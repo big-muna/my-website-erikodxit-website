@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Quiz 9</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        button {
+            background: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background: #1e8449;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Python Quiz 9</h1>
+
+    <form id="quizForm">
+        <div class="question">
+            <p>1. What is the output of: <code>print(type([]))</code>?</p>
+            <label><input type="radio" name="q1" value="list"> list</label>
+            <label><input type="radio" name="q1" value="tuple"> tuple</label>
+        </div>
+
+        <div class="question">
+            <p>2. Which method is used to remove an item from a list?</p>
+            <label><input type="radio" name="q2" value="remove()"> remove()</label>
+            <label><input type="radio" name="q2" value="delete()"> delete()</label>
+        </div>
+
+        <div class="question">
+            <p>3. What is the output of: <code>"Hello".lower()</code>?</p>
+            <label><input type="radio" name="q3" value="hello"> hello</label>
+            <label><input type="radio" name="q3" value="HELLO"> HELLO</label>
+        </div>
+
+        <div class="question">
+            <p>4. What is the result of: <code>3 ** 2</code>?</p>
+            <label><input type="radio" name="q4" value="9"> 9</label>
+            <label><input type="radio" name="q4" value="6"> 6</label>
+        </div>
+
+        <div class="question">
+            <p>5. Which keyword is used to exit a loop in Python?</p>
+            <label><input type="radio" name="q5" value="break"> break</label>
+            <label><input type="radio" name="q5" value="exit"> exit</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function checkAnswers() {
+        const answers = {
+            q1: "list",
+            q2: "remove()",
+            q3: "hello",
+            q4: "9",
+            q5: "break"
+        };
+        let score = 0;
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) {
+                score++;
+            }
+        }
+        document.getElementById("result").textContent = `Your score: ${score} / 5`;
+    }
+</script>
+</body>
+</html>

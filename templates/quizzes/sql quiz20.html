@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Quiz 20 | ErikodxIT</title>
+  <style>
+    body {
+      background: #082146;
+      color: #d7e9ff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #0f294d;
+      max-width: 700px;
+      padding: 40px 50px;
+      border-radius: 18px;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.6);
+    }
+    h1 {
+      text-align: center;
+      color: #6fb1ff;
+      margin-bottom: 38px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+    }
+    .question-block {
+      margin-bottom: 30px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.25em;
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      color: #b8d1ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 35px auto 0;
+      background-color: #0a5cff;
+      color: #fff;
+      padding: 15px 42px;
+      border: none;
+      border-radius: 28px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 28px #0a5cff;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #083ecc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 20</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What command is used to create a new table?</p>
+        <label><input type="radio" name="q0" value="CREATE TABLE" required> CREATE TABLE</label>
+        <label><input type="radio" name="q0" value="NEW TABLE"> NEW TABLE</label>
+        <label><input type="radio" name="q0" value="MAKE TABLE"> MAKE TABLE</label>
+        <input type="hidden" name="correct0" value="CREATE TABLE">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which clause is used to combine rows from two or more tables?</p>
+        <label><input type="radio" name="q1" value="JOIN" required> JOIN</label>
+        <label><input type="radio" name="q1" value="UNION"> UNION</label>
+        <label><input type="radio" name="q1" value="MERGE"> MERGE</label>
+        <input type="hidden" name="correct1" value="JOIN">
+      </div>
+
+      <div class="question-block">
+        <p>3. What does the SQL command TRUNCATE do?</p>
+        <label><input type="radio" name="q2" value="Deletes all rows, keeps structure" required> Deletes all rows, keeps structure</label>
+        <label><input type="radio" name="q2" value="Deletes table"> Deletes table</label>
+        <label><input type="radio" name="q2" value="Deletes a column"> Deletes a column</label>
+        <input type="hidden" name="correct2" value="Deletes all rows, keeps structure">
+      </div>
+
+      <div class="question-block">
+        <p>4. What keyword is used to sort the result set?</p>
+        <label><input type="radio" name="q3" value="ORDER BY" required> ORDER BY</label>
+        <label><input type="radio" name="q3" value="SORT"> SORT</label>
+        <label><input type="radio" name="q3" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct3" value="ORDER BY">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which SQL function calculates the average value?</p>
+        <label><input type="radio" name="q4" value="AVG()" required> AVG()</label>
+        <label><input type="radio" name="q4" value="MEAN()"> MEAN()</label>
+        <label><input type="radio" name="q4" value="MEDIAN()"> MEDIAN()</label>
+        <input type="hidden" name="correct4" value="AVG()">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

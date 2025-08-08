@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 15 – Data Analysis | ErikodxIT</title>
+  <style>
+    /* Same style as quiz14 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+    }
+
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffc3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Quiz 15 – Data Analysis</h1>
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is the default delimiter in CSV files?</p>
+        <label><input type="radio" name="q0" value="Comma"> Comma</label>
+        <label><input type="radio" name="q0" value="Space"> Space</label>
+        <label><input type="radio" name="q0" value="Tab"> Tab</label>
+        <input type="hidden" name="correct0" value="Comma">
+      </div>
+
+      <div class="question-block">
+        <p>2. What Python keyword is used for loops?</p>
+        <label><input type="radio" name="q1" value="for"> for</label>
+        <label><input type="radio" name="q1" value="loop"> loop</label>
+        <label><input type="radio" name="q1" value="repeat"> repeat</label>
+        <input type="hidden" name="correct1" value="for">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which library is best for linear regression?</p>
+        <label><input type="radio" name="q2" value="scikit-learn"> scikit-learn</label>
+        <label><input type="radio" name="q2" value="seaborn"> seaborn</label>
+        <label><input type="radio" name="q2" value="os"> os</label>
+        <input type="hidden" name="correct2" value="scikit-learn">
+      </div>
+
+      <div class="question-block">
+        <p>4. What does <code>.shape</code> return?</p>
+        <label><input type="radio" name="q3" value="Rows and columns"> Rows and columns</label>
+        <label><input type="radio" name="q3" value="Cell value"> Cell value</label>
+        <label><input type="radio" name="q3" value="File size"> File size</label>
+        <input type="hidden" name="correct3" value="Rows and columns">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is <code>df.loc[]</code> used for?</p>
+        <label><input type="radio" name="q4" value="Label-based selection"> Label-based selection</label>
+        <label><input type="radio" name="q4" value="Integer-based selection"> Integer-based selection</label>
+        <label><input type="radio" name="q4" value="Data cleaning"> Data cleaning</label>
+        <input type="hidden" name="correct4" value="Label-based selection">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+
+</body>
+</html>
+

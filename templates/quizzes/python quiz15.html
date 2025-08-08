@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Quiz 15 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff; /* lighter blue */
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐍 Python Quiz 15</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. How do you write a comment in Python?</p>
+        <label><input type="radio" name="q0" value="/* comment */" required> /* comment */</label>
+        <label><input type="radio" name="q0" value="// comment"> // comment</label>
+        <label><input type="radio" name="q0" value="# comment"> # comment</label>
+        <input type="hidden" name="correct0" value="# comment">
+      </div>
+
+      <div class="question-block">
+        <p>2. What is the correct syntax to import a module named `math`?</p>
+        <label><input type="radio" name="q1" value="import math" required> import math</label>
+        <label><input type="radio" name="q1" value="include math"> include math</label>
+        <label><input type="radio" name="q1" value="using math"> using math</label>
+        <input type="hidden" name="correct1" value="import math">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is the output of `print(type(3.14))`?</p>
+        <label><input type="radio" name="q2" value="int" required> int</label>
+        <label><input type="radio" name="q2" value="float"> float</label>
+        <label><input type="radio" name="q2" value="str"> str</label>
+        <input type="hidden" name="correct2" value="float">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which function converts a string to an integer?</p>
+        <label><input type="radio" name="q3" value="int()" required> int()</label>
+        <label><input type="radio" name="q3" value="str()"> str()</label>
+        <label><input type="radio" name="q3" value="float()"> float()</label>
+        <input type="hidden" name="correct3" value="int()">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which operator is used for floor division?</p>
+        <label><input type="radio" name="q4" value="/"> /</label>
+        <label><input type="radio" name="q4" value="//"> //</label>
+        <label><input type="radio" name="q4" value="%"> %</label>
+        <input type="hidden" name="correct4" value="//">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+  </div>
+</body>
+</html>

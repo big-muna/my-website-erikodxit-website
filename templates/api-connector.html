@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>API Connector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a23;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            max-width: 700px;
+            margin: auto;
+            text-align: left;
+            background: #1e1e40;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        textarea, input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 4px;
+            border: none;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        button {
+            background: #00f2fe;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        pre {
+            background: black;
+            padding: 10px;
+            text-align: left;
+            color: #00ffcc;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔌 API Connector</h1>
+    <form method="POST">
+        <label>API URL:</label>
+        <input type="text" name="api_url" placeholder="https://api.example.com/data" required>
+
+        <label>HTTP Method:</label>
+        <select name="method">
+            <option>GET</option>
+            <option>POST</option>
+            <option>PUT</option>
+            <option>DELETE</option>
+        </select>
+
+        <label>Headers (JSON format):</label>
+        <textarea name="headers" placeholder='{"Authorization": "Bearer YOUR_KEY"}'></textarea>
+
+        <label>Body (JSON format or text):</label>
+        <textarea name="body" placeholder='{"name": "John"}'></textarea>
+
+        <button type="submit">Send Request</button>
+    </form>
+
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+
+    {% if response_data %}
+        <h2>📥 Response:</h2>
+        <pre>{{ response_data }}</pre>
+    {% endif %}
+
+    <p><a href="{{ url_for('data_tools') }}" style="color: #00f2fe;">⬅ Back to Tools</a></p>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Projects – Lesson 19 | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffd0;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffd0;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff7276; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💡 AI Projects – Lesson 19 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is the main goal of speech recognition?</p>
+        <label><input type="radio" name="q0" value="Converting spoken language into text" required> Converting spoken language into text</label>
+        <label><input type="radio" name="q0" value="Translating images"> Translating images</label>
+        <label><input type="radio" name="q0" value="Drawing objects"> Drawing objects</label>
+        <input type="hidden" name="correct0" value="Converting spoken language into text">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which library can be used in Python for speech recognition?</p>
+        <label><input type="radio" name="q1" value="SpeechRecognition" required> SpeechRecognition</label>
+        <label><input type="radio" name="q1" value="Pillow"> Pillow</label>
+        <label><input type="radio" name="q1" value="Seaborn"> Seaborn</label>
+        <input type="hidden" name="correct1" value="SpeechRecognition">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is a microphone used for in speech recognition?</p>
+        <label><input type="radio" name="q2" value="To capture voice input" required> To capture voice input</label>
+        <label><input type="radio" name="q2" value="To display text"> To display text</label>
+        <label><input type="radio" name="q2" value="To print documents"> To print documents</label>
+        <input type="hidden" name="correct2" value="To capture voice input">
+      </div>
+
+      <div class="question-block">
+        <p>4. What does a recognizer do in speech AI?</p>
+        <label><input type="radio" name="q3" value="Processes audio and returns text" required> Processes audio and returns text</label>
+        <label><input type="radio" name="q3" value="Sends emails"> Sends emails</label>
+        <label><input type="radio" name="q3" value="Draws animations"> Draws animations</label>
+        <input type="hidden" name="correct3" value="Processes audio and returns text">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is noise cancellation used for in voice recognition?</p>
+        <label><input type="radio" name="q4" value="To reduce background noise" required> To reduce background noise</label>
+        <label><input type="radio" name="q4" value="To increase brightness"> To increase brightness</label>
+        <label><input type="radio" name="q4" value="To zoom into an image"> To zoom into an image</label>
+        <input type="hidden" name="correct4" value="To reduce background noise">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

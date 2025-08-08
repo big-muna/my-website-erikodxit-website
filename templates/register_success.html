@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Successful</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0a0a23, #1e1e2f);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .success-box {
+      background: rgba(0, 255, 170, 0.05);
+      border: 2px solid rgba(0, 255, 170, 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 30px rgba(0, 255, 170, 0.2);
+      text-align: center;
+      animation: popIn 0.5s ease;
+    }
+
+    .success-box h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #00ffaa;
+    }
+
+    .success-box p {
+      font-size: 16px;
+      color: #d2fef0;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      background: #00ffaa;
+      color: #0a0a23;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    a:hover {
+      background: #00dd99;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <h1>🎉 Registration Successful!</h1>
+    <p>You can now log in to your account.</p>
+    <a href="/login">👉 Go to Login</a>
+  </div>
+</body>
+</html>

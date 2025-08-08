@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d1117;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #161b22;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #30363d;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #161b22;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+        }
+        h3 {
+            color: #58a6ff;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            background: #238636;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2ea043;
+        }
+    </style>
+</head>
+<body>
+    <header>Python Quiz 5</header>
+    <div class="quiz-container">
+        <form>
+            <div class="question">
+                <h3>1. What does the `zip()` function do in Python?</h3>
+                <input type="radio" name="q1"> Combines two or more iterables<br>
+                <input type="radio" name="q1"> Compresses data<br>
+                <input type="radio" name="q1"> Converts a list to a dictionary<br>
+            </div>
+            <div class="question">
+                <h3>2. What is the output of `bool(0)` in Python?</h3>
+                <input type="radio" name="q2"> True<br>
+                <input type="radio" name="q2"> False<br>
+                <input type="radio" name="q2"> None<br>
+            </div>
+            <div class="question">
+                <h3>3. Which method is used to add an element to a list?</h3>
+                <input type="radio" name="q3"> append()<br>
+                <input type="radio" name="q3"> add()<br>
+                <input type="radio" name="q3"> push()<br>
+            </div>
+            <div class="question">
+                <h3>4. How do you create a tuple in Python?</h3>
+                <input type="radio" name="q4"> Using []<br>
+                <input type="radio" name="q4"> Using ()<br>
+                <input type="radio" name="q4"> Using {}<br>
+            </div>
+            <div class="question">
+                <h3>5. Which operator is used for floor division in Python?</h3>
+                <input type="radio" name="q5"> //<br>
+                <input type="radio" name="q5"> /<br>
+                <input type="radio" name="q5"> %<br>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

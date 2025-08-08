@@ -1,0 +1,46 @@
+<!-- templates/certificate_found.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate Found</title>
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    img {
+      max-width: 100%;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    a.download-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #00c6ff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Certificate Found!</h1>
+
+  {% if cert_filename.lower().endswith('.pdf') %}
+    <p>Your certificate is available as a PDF file.</p>
+  {% else %}
+    <img src="{{ url_for('static', filename='uploads/certificates/' + cert_filename) }}" alt="Your Certificate">
+  {% endif %}
+
+  <br>
+  <a href="{{ url_for('download_certificate', filename=cert_filename) }}" class="download-link">
+    ⬇ Download Certificate
+  </a>
+</body>
+</html>

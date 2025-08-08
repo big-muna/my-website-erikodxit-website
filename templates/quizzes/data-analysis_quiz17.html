@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 17 – Data Analysis | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+    }
+
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffc3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Quiz 17 – Data Analysis</h1>
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What does the term "data wrangling" refer to?</p>
+        <label><input type="radio" name="q0" value="Cleaning and transforming raw data"> Cleaning and transforming raw data</label>
+        <label><input type="radio" name="q0" value="Visualizing large datasets"> Visualizing large datasets</label>
+        <label><input type="radio" name="q0" value="Running machine learning models"> Running machine learning models</label>
+        <input type="hidden" name="correct0" value="Cleaning and transforming raw data">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which Python library is primarily used for data manipulation and analysis?</p>
+        <label><input type="radio" name="q1" value="Matplotlib"> Matplotlib</label>
+        <label><input type="radio" name="q1" value="Scikit-learn"> Scikit-learn</label>
+        <label><input type="radio" name="q1" value="Pandas"> Pandas</label>
+        <input type="hidden" name="correct1" value="Pandas">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is the main purpose of data normalization?</p>
+        <label><input type="radio" name="q2" value="Ensure data integrity"> Ensure data integrity</label>
+        <label><input type="radio" name="q2" value="Add more columns"> Add more columns</label>
+        <label><input type="radio" name="q2" value="Reduce storage space"> Reduce storage space</label>
+        <input type="hidden" name="correct2" value="Ensure data integrity">
+      </div>
+
+      <div class="question-block">
+        <p>4. What does a correlation matrix show?</p>
+        <label><input type="radio" name="q3" value="Relation between variables"> Relation between variables</label>
+        <label><input type="radio" name="q3" value="Average of values"> Average of values</label>
+        <label><input type="radio" name="q3" value="Number of rows"> Number of rows</label>
+        <input type="hidden" name="correct3" value="Relation between variables">
+      </div>
+
+      <div class="question-block">
+        <p>5. What does the <code>dropna()</code> function do in Pandas?</p>
+        <label><input type="radio" name="q4" value="Drops missing values"> Drops missing values</label>
+        <label><input type="radio" name="q4" value="Fills missing values"> Fills missing values</label>
+        <label><input type="radio" name="q4" value="Replaces values"> Replaces values</label>
+        <input type="hidden" name="correct4" value="Drops missing values">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+
+</body>
+</html>
+

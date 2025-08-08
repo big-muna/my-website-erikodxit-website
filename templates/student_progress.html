@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Student Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: white;
+            padding: 30px;
+        }
+        h2 {
+            color: #38bdf8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #334155;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #1e293b;
+        }
+        tr:nth-child(even) {
+            background: #1e293b;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📊 Progress for {{ student.name }} ({{ student.email }})</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Progress %</th>
+            <th>Last Seen</th>
+            <th>Updated At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in progress_rows %}
+        <tr>
+            <td>{{ row.course }}</td>
+            <td>{{ row.percent }}%</td>
+            <td>{{ row.last_seen }}</td>
+            <td>{{ row.updated_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('admin_panel') }}">⬅ Back to Admin Panel</a>
+
+</body>
+</html>

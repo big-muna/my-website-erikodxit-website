@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Quiz 8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Python Quiz 8</h1>
+
+    <form id="quizForm">
+        <div class="question">
+            <p>1. What is the output of: <code>print(bool(0))</code>?</p>
+            <label><input type="radio" name="q1" value="True"> True</label>
+            <label><input type="radio" name="q1" value="False"> False</label>
+        </div>
+
+        <div class="question">
+            <p>2. Which keyword is used to define a function in Python?</p>
+            <label><input type="radio" name="q2" value="def"> def</label>
+            <label><input type="radio" name="q2" value="function"> function</label>
+            <label><input type="radio" name="q2" value="fun"> fun</label>
+        </div>
+
+        <div class="question">
+            <p>3. What does <code>len("Python")</code> return?</p>
+            <label><input type="radio" name="q3" value="5"> 5</label>
+            <label><input type="radio" name="q3" value="6"> 6</label>
+        </div>
+
+        <div class="question">
+            <p>4. Which symbol is used for floor division in Python?</p>
+            <label><input type="radio" name="q4" value="//"> //</label>
+            <label><input type="radio" name="q4" value="/"> /</label>
+        </div>
+
+        <div class="question">
+            <p>5. What is the data type of <code>True</code> in Python?</p>
+            <label><input type="radio" name="q5" value="bool"> bool</label>
+            <label><input type="radio" name="q5" value="str"> str</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function checkAnswers() {
+        const answers = {
+            q1: "False",
+            q2: "def",
+            q3: "6",
+            q4: "//",
+            q5: "bool"
+        };
+        let score = 0;
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) {
+                score++;
+            }
+        }
+        document.getElementById("result").textContent = `Your score: ${score} / 5`;
+    }
+</script>
+</body>
+</html>

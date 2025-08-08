@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a23;
+            color: white;
+            padding: 20px;
+        }
+        form {
+            background: #12123a;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: #00c2ff;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #00a8d4;
+        }
+    </style>
+</head>
+<body>
+    <h2>📜 Upload Certificate</h2>
+    <form action="/admin/upload-certificate" method="POST" enctype="multipart/form-data">
+        <label>Student Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Student Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Certificate Title:</label>
+        <input type="text" name="title" placeholder="Optional">
+
+        <label>Course:</label>
+        <select name="course" required>
+            <option value="">-- Select Course --</option>
+            <option value="ai">AI</option>
+            <option value="data-analysis">Data Analysis</option>
+            <option value="ml">Machine Learning</option>
+            <option value="viz">Data Visualization</option>
+            <option value="ai-projects">AI Projects</option>
+        </select>
+
+        <label>Upload Certificate (PDF only):</label>
+        <input type="file" name="certificate" accept="application/pdf" required>
+
+        <button type="submit">Upload Certificate</button>
+    </form>
+</body>
+</html>

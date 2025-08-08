@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Report</title>
+  <style>
+    body {
+      background-color: #0a0a23;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .box {
+      background-color: #1a1a3d;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h2 { color: #00ffaa; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Progress for {{ student['name'] }}</h2>
+    <p><strong>Email:</strong> {{ student['email'] }}</p>
+    <p><strong>Course:</strong> {{ student['course'] }}</p>
+    <p><strong>Completed Lessons:</strong> {{ student['completed_lessons'] }}</p>
+    <p><strong>Quizzes Passed:</strong> {{ student['quizzes_passed'] }}</p>
+  </div>
+  <a href="/admin-dashboard" style="color: #00ffaa; display: inline-block; margin-top: 20px;">← Back to Admin Dashboard</a>
+</body>
+</html>

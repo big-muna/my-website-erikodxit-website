@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Quiz 3 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 3</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL keyword is used to combine rows from two or more tables?</p>
+        <label><input type="radio" name="q0" value="JOIN" required> JOIN</label>
+        <label><input type="radio" name="q0" value="UNION"> UNION</label>
+        <label><input type="radio" name="q0" value="INTERSECT"> INTERSECT</label>
+        <input type="hidden" name="correct0" value="JOIN">
+      </div>
+
+      <div class="question-block">
+        <p>2. What does the PRIMARY KEY constraint do?</p>
+        <label><input type="radio" name="q1" value="Uniquely identifies each record" required> Uniquely identifies each record</label>
+        <label><input type="radio" name="q1" value="Allows NULL values"> Allows NULL values</label>
+        <label><input type="radio" name="q1" value="Indexes the table"> Indexes the table</label>
+        <input type="hidden" name="correct1" value="Uniquely identifies each record">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which command is used to add a new column to an existing table?</p>
+        <label><input type="radio" name="q2" value="ALTER TABLE ADD COLUMN" required> ALTER TABLE ADD COLUMN</label>
+        <label><input type="radio" name="q2" value="MODIFY TABLE"> MODIFY TABLE</label>
+        <label><input type="radio" name="q2" value="UPDATE TABLE"> UPDATE TABLE</label>
+        <input type="hidden" name="correct2" value="ALTER TABLE ADD COLUMN">
+      </div>
+
+      <div class="question-block">
+        <p>4. What is a foreign key in SQL?</p>
+        <label><input type="radio" name="q3" value="A key used to link two tables" required> A key used to link two tables</label>
+        <label><input type="radio" name="q3" value="A key to encrypt data"> A key to encrypt data</label>
+        <label><input type="radio" name="q3" value="A key that uniquely identifies rows"> A key that uniquely identifies rows</label>
+        <input type="hidden" name="correct3" value="A key used to link two tables">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which SQL statement is used to remove a table and all its data?</p>
+        <label><input type="radio" name="q4" value="DROP TABLE" required> DROP TABLE</label>
+        <label><input type="radio" name="q4" value="DELETE TABLE"> DELETE TABLE</label>
+        <label><input type="radio" name="q4" value="REMOVE TABLE"> REMOVE TABLE</label>
+        <input type="hidden" name="correct4" value="DROP TABLE">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!-- python-quiz7.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz 7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+        .quiz-container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #aaa;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Quiz 7</h1>
+    <div class="quiz-container" id="quiz">
+        <div class="question">
+            <p>1. Which data type is immutable in Python?</p>
+            <input type="radio" name="q1" value="a"> List<br>
+            <input type="radio" name="q1" value="b"> Tuple<br>
+            <input type="radio" name="q1" value="c"> Dictionary<br>
+        </div>
+        <div class="question">
+            <p>2. What is the output of <code>bool(0)</code>?</p>
+            <input type="radio" name="q2" value="a"> True<br>
+            <input type="radio" name="q2" value="b"> False<br>
+        </div>
+        <div class="question">
+            <p>3. How do you start a comment in Python?</p>
+            <input type="radio" name="q3" value="a"> // Comment<br>
+            <input type="radio" name="q3" value="b"> # Comment<br>
+            <input type="radio" name="q3" value="c"> <!-- Comment --><br>
+        </div>
+        <div class="question">
+            <p>4. What will <code>print(type(3.14))</code> display?</p>
+            <input type="radio" name="q4" value="a"> int<br>
+            <input type="radio" name="q4" value="b"> float<br>
+            <input type="radio" name="q4" value="c"> str<br>
+        </div>
+        <div class="question">
+            <p>5. Which method is used to remove whitespace from a string?</p>
+            <input type="radio" name="q5" value="a"> trim()<br>
+            <input type="radio" name="q5" value="b"> strip()<br>
+            <input type="radio" name="q5" value="c"> remove()<br>
+        </div>
+        <button onclick="checkAnswers()">Submit</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let correct = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === "b") correct++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === "b") correct++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === "b") correct++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === "b") correct++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === "b") correct++;
+            document.getElementById("result").textContent = `You scored ${correct} out of 5.`;
+        }
+    </script>
+</body>
+</html>

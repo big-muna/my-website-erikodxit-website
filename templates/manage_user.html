@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage {{ student.name or student.email }}</title>
+    <style>
+        body { background: #0f172a; color: #fff; font-family: Arial; padding: 20px; }
+        h2 { color: #38bdf8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #334155; }
+        th { background: #1e293b; }
+        tr:nth-child(even) { background: #334155; }
+        a, button { color: #38bdf8; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h2>👥 Manage User - {{ student.email }}</h2>
+
+    <h3>📚 Enrolled Courses & Access Codes</h3>
+    {% if access_codes %}
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Access Code</th>
+            <th>Expires At</th>
+        </tr>
+        {% for c in access_codes %}
+        <tr>
+            <td>{{ c.course_slug }}</td>
+            <td>{{ c.code }}</td>
+            <td>{{ c.expires_at.strftime("%Y-%m-%d") }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No courses found for this user.</p>
+    {% endif %}
+
+    <h3>⚙ Actions</h3>
+    <form method="POST" action="{{ url_for('remove_student') }}">
+        <input type="hidden" name="email" value="{{ student.email }}">
+        <button type="submit" style="background:red; color:white; padding:8px;">❌ Remove Student</button>
+    </form>
+
+    <p><a href="{{ url_for('admin_panel') }}">⬅ Back to Admin Panel</a></p>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Quiz 14 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0a0a23;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 750px;
+      margin: 40px 20px;
+      padding: 30px;
+      background: #12123a;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #00bfff;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+    .question-block {
+      margin-bottom: 28px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin: 7px 0;
+      cursor: pointer;
+      color: #cce7ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 14px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #00bfff;
+      color: #000;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00bfff;
+      transition: background-color 0.25s ease;
+    }
+    button:hover {
+      background-color: #0099dd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 14</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL statement is used to retrieve data from a database?</p>
+        <label><input type="radio" name="q0" value="SELECT" required> SELECT</label>
+        <label><input type="radio" name="q0" value="GET"> GET</label>
+        <label><input type="radio" name="q0" value="FETCH"> FETCH</label>
+        <input type="hidden" name="correct0" value="SELECT">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which SQL function counts the number of rows in a table?</p>
+        <label><input type="radio" name="q1" value="COUNT()" required> COUNT()</label>
+        <label><input type="radio" name="q1" value="SUM()"> SUM()</label>
+        <label><input type="radio" name="q1" value="MAX()"> MAX()</label>
+        <input type="hidden" name="correct1" value="COUNT()">
+      </div>
+
+      <div class="question-block">
+        <p>3. What keyword is used to filter results in SQL?</p>
+        <label><input type="radio" name="q2" value="WHERE" required> WHERE</label>
+        <label><input type="radio" name="q2" value="FILTER"> FILTER</label>
+        <label><input type="radio" name="q2" value="HAVING"> HAVING</label>
+        <input type="hidden" name="correct2" value="WHERE">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which operator is used to test for NULL values?</p>
+        <label><input type="radio" name="q3" value="IS NULL" required> IS NULL</label>
+        <label><input type="radio" name="q3" value="= NULL">= NULL</label>
+        <label><input type="radio" name="q3" value="NULL">NULL</label>
+        <input type="hidden" name="correct3" value="IS NULL">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which keyword is used to add a condition on grouped rows?</p>
+        <label><input type="radio" name="q4" value="HAVING" required> HAVING</label>
+        <label><input type="radio" name="q4" value="WHERE"> WHERE</label>
+        <label><input type="radio" name="q4" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct4" value="HAVING">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

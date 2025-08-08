@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Quiz 19 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0e153a;
+      color: #4a90e2;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #1b2461;
+      max-width: 700px;
+      padding: 35px 45px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
+    }
+    h1 {
+      text-align: center;
+      color: #82b1ff;
+      margin-bottom: 32px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
+    .question-block {
+      margin-bottom: 28px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.15em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 7px 0;
+      cursor: pointer;
+      color: #c3d7ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #4a90e2;
+      color: #fff;
+      padding: 14px 38px;
+      border: none;
+      border-radius: 30px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 22px #4a90e2;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3c76c1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 19</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL command is used to add a new column to a table?</p>
+        <label><input type="radio" name="q0" value="ALTER TABLE ADD" required> ALTER TABLE ADD</label>
+        <label><input type="radio" name="q0" value="ADD COLUMN"> ADD COLUMN</label>
+        <label><input type="radio" name="q0" value="INSERT COLUMN"> INSERT COLUMN</label>
+        <input type="hidden" name="correct0" value="ALTER TABLE ADD">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which clause is used to filter groups after aggregation?</p>
+        <label><input type="radio" name="q1" value="HAVING" required> HAVING</label>
+        <label><input type="radio" name="q1" value="WHERE"> WHERE</label>
+        <label><input type="radio" name="q1" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct1" value="HAVING">
+      </div>
+
+      <div class="question-block">
+        <p>3. What type of JOIN returns all rows from the left table and matching rows from the right table?</p>
+        <label><input type="radio" name="q2" value="LEFT JOIN" required> LEFT JOIN</label>
+        <label><input type="radio" name="q2" value="INNER JOIN"> INNER JOIN</label>
+        <label><input type="radio" name="q2" value="RIGHT JOIN"> RIGHT JOIN</label>
+        <input type="hidden" name="correct2" value="LEFT JOIN">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which statement is true about NULL values?</p>
+        <label><input type="radio" name="q3" value="NULL means unknown or missing" required> NULL means unknown or missing</label>
+        <label><input type="radio" name="q3" value="NULL is zero"> NULL is zero</label>
+        <label><input type="radio" name="q3" value="NULL is an empty string"> NULL is an empty string</label>
+        <input type="hidden" name="correct3" value="NULL means unknown or missing">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which command removes all rows but keeps the table structure?</p>
+        <label><input type="radio" name="q4" value="TRUNCATE" required> TRUNCATE</label>
+        <label><input type="radio" name="q4" value="DELETE"> DELETE</label>
+        <label><input type="radio" name="q4" value="DROP"> DROP</label>
+        <input type="hidden" name="correct4" value="TRUNCATE">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

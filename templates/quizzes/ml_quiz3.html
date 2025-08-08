@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ML Projects – Lesson 3 | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #141428;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffb3;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffb3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff7276; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 ML Projects – Lesson 3 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What does a machine learning algorithm do?</p>
+        <label><input type="radio" name="q0" value="Learns patterns from data" required> Learns patterns from data</label>
+        <label><input type="radio" name="q0" value="Types documents"> Types documents</label>
+        <label><input type="radio" name="q0" value="Prints photos"> Prints photos</label>
+        <input type="hidden" name="correct0" value="Learns patterns from data">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which ML type uses input and output data?</p>
+        <label><input type="radio" name="q1" value="Supervised Learning" required> Supervised Learning</label>
+        <label><input type="radio" name="q1" value="Unsupervised Learning"> Unsupervised Learning</label>
+        <label><input type="radio" name="q1" value="Reinforcement Learning"> Reinforcement Learning</label>
+        <input type="hidden" name="correct1" value="Supervised Learning">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is clustering in machine learning?</p>
+        <label><input type="radio" name="q2" value="Grouping similar data" required> Grouping similar data</label>
+        <label><input type="radio" name="q2" value="Sorting alphabetically"> Sorting alphabetically</label>
+        <label><input type="radio" name="q2" value="Coloring images"> Coloring images</label>
+        <input type="hidden" name="correct2" value="Grouping similar data">
+      </div>
+
+      <div class="question-block">
+        <p>4. What kind of learning is used for recommendation systems?</p>
+        <label><input type="radio" name="q3" value="Reinforcement Learning" required> Reinforcement Learning</label>
+        <label><input type="radio" name="q3" value="Clustering"> Clustering</label>
+        <label><input type="radio" name="q3" value="Sorting"> Sorting</label>
+        <input type="hidden" name="correct3" value="Reinforcement Learning">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is overfitting in ML?</p>
+        <label><input type="radio" name="q4" value="Model memorizes training data too well" required> Model memorizes training data too well</label>
+        <label><input type="radio" name="q4" value="Model forgets all data"> Model forgets all data</label>
+        <label><input type="radio" name="q4" value="Model runs forever"> Model runs forever</label>
+        <input type="hidden" name="correct4" value="Model memorizes training data too well">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

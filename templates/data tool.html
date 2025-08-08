@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Access Data Tools | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a23;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00f2fe;
+      margin-bottom: 20px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: #12121c;
+      border: 1px solid #2a2a40;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tool-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #00f2fe55;
+    }
+
+    .tool-card h3 {
+      color: #0ef6cc;
+    }
+
+    .tool-card p {
+      font-size: 14px;
+      margin: 10px 0 15px;
+    }
+
+    .tool-card button {
+      padding: 8px 16px;
+      background: #00f2fe;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tool-card button:hover {
+      background: #0ef6cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🛠️ Access Data Tools</h2>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <h3>CSV Analyzer</h3>
+        <p>Upload and analyze CSV files with statistical summaries.</p>
+        <button onclick="openTool('csv-analyzer')">Open Tool</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>Data Visualizer</h3>
+        <p>Create bar, line, and pie charts from your datasets easily.</p>
+        <button onclick="openTool('data-visualizer')">Open Tool</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>API Connector</h3>
+        <p>Connect and fetch data from any public API endpoint.</p>
+        <button onclick="openTool('api-connector')">Open Tool</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>Data Cleaner</h3>
+        <p>Clean and format raw datasets before using them in projects.</p>
+        <button onclick="openTool('data-cleaner')">Open Tool</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openTool(tool) {
+      alert(`You selected the ${tool} tool. This can link to a functional page or backend service.`);
+      // Example: window.location.href = `/tools/${tool}`;
+    }
+  </script>
+</body>
+</html>

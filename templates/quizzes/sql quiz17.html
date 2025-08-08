@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Quiz 17 | ErikodxIT</title>
+  <style>
+    body {
+      background: #082146;
+      color: #d7e9ff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #0f294d;
+      max-width: 700px;
+      padding: 40px 50px;
+      border-radius: 18px;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.6);
+    }
+    h1 {
+      text-align: center;
+      color: #6fb1ff;
+      margin-bottom: 38px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+    }
+    .question-block {
+      margin-bottom: 30px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.25em;
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      color: #b8d1ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 35px auto 0;
+      background-color: #0a5cff;
+      color: #fff;
+      padding: 15px 42px;
+      border: none;
+      border-radius: 28px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 28px #0a5cff;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #083ecc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 17</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL statement is used to create a new database?</p>
+        <label><input type="radio" name="q0" value="CREATE DATABASE" required> CREATE DATABASE</label>
+        <label><input type="radio" name="q0" value="NEW DATABASE"> NEW DATABASE</label>
+        <label><input type="radio" name="q0" value="MAKE DATABASE"> MAKE DATABASE</label>
+        <input type="hidden" name="correct0" value="CREATE DATABASE">
+      </div>
+
+      <div class="question-block">
+        <p>2. What command removes a table and all its data?</p>
+        <label><input type="radio" name="q1" value="DROP TABLE" required> DROP TABLE</label>
+        <label><input type="radio" name="q1" value="DELETE TABLE"> DELETE TABLE</label>
+        <label><input type="radio" name="q1" value="REMOVE TABLE"> REMOVE TABLE</label>
+        <input type="hidden" name="correct1" value="DROP TABLE">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which command updates data in a table?</p>
+        <label><input type="radio" name="q2" value="UPDATE" required> UPDATE</label>
+        <label><input type="radio" name="q2" value="MODIFY"> MODIFY</label>
+        <label><input type="radio" name="q2" value="CHANGE"> CHANGE</label>
+        <input type="hidden" name="correct2" value="UPDATE">
+      </div>
+
+      <div class="question-block">
+        <p>4. What keyword specifies the table to delete data from?</p>
+        <label><input type="radio" name="q3" value="FROM" required> FROM</label>
+        <label><input type="radio" name="q3" value="TABLE"> TABLE</label>
+        <label><input type="radio" name="q3" value="WHERE"> WHERE</label>
+        <input type="hidden" name="correct3" value="FROM">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which SQL function returns the maximum value of a column?</p>
+        <label><input type="radio" name="q4" value="MAX()" required> MAX()</label>
+        <label><input type="radio" name="q4" value="MAXIMUM()"> MAXIMUM()</label>
+        <label><input type="radio" name="q4" value="HIGHEST()"> HIGHEST()</label>
+        <input type="hidden" name="correct4" value="MAX()">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

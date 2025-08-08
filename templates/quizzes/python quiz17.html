@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Quiz 17 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐍 Python Quiz 17</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. How do you create a dictionary in Python?</p>
+        <label><input type="radio" name="q0" value="Using []" required> Using []</label>
+        <label><input type="radio" name="q0" value="Using ()"> Using ()</label>
+        <label><input type="radio" name="q0" value="Using {}"> Using {}</label>
+        <input type="hidden" name="correct0" value="Using {}">
+      </div>
+
+      <div class="question-block">
+        <p>2. What does the `strip()` method do?</p>
+        <label><input type="radio" name="q1" value="Removes whitespace from the beginning and end" required> Removes whitespace from the beginning and end</label>
+        <label><input type="radio" name="q1" value="Converts string to uppercase"> Converts string to uppercase</label>
+        <label><input type="radio" name="q1" value="Splits a string into a list"> Splits a string into a list</label>
+        <input type="hidden" name="correct1" value="Removes whitespace from the beginning and end">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is the keyword to handle exceptions?</p>
+        <label><input type="radio" name="q2" value="try" required> try</label>
+        <label><input type="radio" name="q2" value="except"> except</label>
+        <label><input type="radio" name="q2" value="catch"> catch</label>
+        <input type="hidden" name="correct2" value="try">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which of these is NOT a valid Python data type?</p>
+        <label><input type="radio" name="q3" value="list" required> list</label>
+        <label><input type="radio" name="q3" value="array"> array</label>
+        <label><input type="radio" name="q3" value="tuple"> tuple</label>
+        <input type="hidden" name="correct3" value="array">
+      </div>
+
+      <div class="question-block">
+        <p>5. How do you start a while loop?</p>
+        <label><input type="radio" name="q4" value="while condition:" required> while condition:</label>
+        <label><input type="radio" name="q4" value="for condition:"> for condition:</label>
+        <label><input type="radio" name="q4" value="loop condition:"> loop condition:</label>
+        <input type="hidden" name="correct4" value="while condition:">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+  </div>
+</body>
+</html>

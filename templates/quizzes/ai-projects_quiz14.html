@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Projects – Lesson 14 | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffd0;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffd0;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff7276; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💡 AI Projects – Lesson 14 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is feature scaling?</p>
+        <label><input type="radio" name="q0" value="Rescaling data to a standard range" required> Rescaling data to a standard range</label>
+        <label><input type="radio" name="q0" value="Adding more rows"> Adding more rows</label>
+        <label><input type="radio" name="q0" value="Combining datasets"> Combining datasets</label>
+        <input type="hidden" name="correct0" value="Rescaling data to a standard range">
+      </div>
+
+      <div class="question-block">
+        <p>2. Why is feature scaling important?</p>
+        <label><input type="radio" name="q1" value="It improves model performance" required> It improves model performance</label>
+        <label><input type="radio" name="q1" value="It increases screen brightness"> It increases screen brightness</label>
+        <label><input type="radio" name="q1" value="It deletes duplicates"> It deletes duplicates</label>
+        <input type="hidden" name="correct1" value="It improves model performance">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which method scales values between 0 and 1?</p>
+        <label><input type="radio" name="q2" value="Min-Max Scaling" required> Min-Max Scaling</label>
+        <label><input type="radio" name="q2" value="One-Hot Encoding"> One-Hot Encoding</label>
+        <label><input type="radio" name="q2" value="Text Tokenization"> Text Tokenization</label>
+        <input type="hidden" name="correct2" value="Min-Max Scaling">
+      </div>
+
+      <div class="question-block">
+        <p>4. What is standardization?</p>
+        <label><input type="radio" name="q3" value="Rescaling data with mean 0 and std 1" required> Rescaling data with mean 0 and std 1</label>
+        <label><input type="radio" name="q3" value="Removing all features"> Removing all features</label>
+        <label><input type="radio" name="q3" value="Fitting a chart"> Fitting a chart</label>
+        <input type="hidden" name="correct3" value="Rescaling data with mean 0 and std 1">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which algorithm is sensitive to feature scaling?</p>
+        <label><input type="radio" name="q4" value="K-Nearest Neighbors" required> K-Nearest Neighbors</label>
+        <label><input type="radio" name="q4" value="Decision Trees"> Decision Trees</label>
+        <label><input type="radio" name="q4" value="Rule-based AI"> Rule-based AI</label>
+        <input type="hidden" name="correct4" value="K-Nearest Neighbors">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

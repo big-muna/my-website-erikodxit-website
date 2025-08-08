@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Visualization – Lesson 17 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0c0c22;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #191940;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 18px #00ffff44;
+    }
+    h1 {
+      text-align: center;
+      color: #00ffff;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+    }
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+    button {
+      margin-top: 30px;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 25px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #222244;
+    }
+    .feedback-table th, .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+    }
+    .feedback-table th {
+      background-color: #00ffff;
+      color: #000;
+    }
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff4444; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Data Visualization – Lesson 17 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is the purpose of labeling axes in a chart?</p>
+        <label><input type="radio" name="q0" value="To describe the data each axis represents" required> To describe the data each axis represents</label>
+        <label><input type="radio" name="q0" value="To fill space"> To fill space</label>
+        <input type="hidden" name="correct0" value="To describe the data each axis represents">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which function adds a title in Matplotlib?</p>
+        <label><input type="radio" name="q1" value="plt.title()" required> plt.title()</label>
+        <label><input type="radio" name="q1" value="plt.write()"> plt.write()</label>
+        <input type="hidden" name="correct1" value="plt.title()">
+      </div>
+
+      <div class="question-block">
+        <p>3. What command adds a label to the x-axis?</p>
+        <label><input type="radio" name="q2" value="plt.xlabel()" required> plt.xlabel()</label>
+        <label><input type="radio" name="q2" value="plt.xwrite()"> plt.xwrite()</label>
+        <input type="hidden" name="correct2" value="plt.xlabel()">
+      </div>
+
+      <div class="question-block">
+        <p>4. Why should legends be included in plots?</p>
+        <label><input type="radio" name="q3" value="To identify data series" required> To identify data series</label>
+        <label><input type="radio" name="q3" value="For decoration"> For decoration</label>
+        <input type="hidden" name="correct3" value="To identify data series">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is the syntax to show a plot?</p>
+        <label><input type="radio" name="q4" value="plt.show()" required> plt.show()</label>
+        <label><input type="radio" name="q4" value="plt.display()"> plt.display()</label>
+        <input type="hidden" name="correct4" value="plt.show()">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>Results</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>
