@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a23;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            margin: 20px;
+        }
+        input[type="file"] {
+            padding: 6px;
+            background: #1f1f3a;
+            color: white;
+            border: 1px solid #555;
+        }
+        button {
+            padding: 8px 16px;
+            background: #00f2fe;
+            border: none;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #00d4d8;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            background: white;
+            color: black;
+            min-width: 60%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .stats {
+            margin-top: 20px;
+            background: #1f1f3a;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            text-align: left;
+        }
+        .chart-section {
+            margin-top: 40px;
+        }
+        canvas {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 CSV Analyzer</h1>
+    <p>Upload your CSV file to preview data and get quick insights.</p>
+
+    <!-- Upload Form -->
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv,.xlsx,.ods" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">❌ {{ error }}</p>
+    {% endif %}
+
+    <!-- Dataset Stats -->
+    {% if stats %}
+        <div class="stats">
+            <h3>📄 File Info:</h3>
+            <p><strong>Rows:</strong> {{ stats.rows }}</p>
+            <p><strong>Columns:</strong> {{ stats.columns }}</p>
+            <p><strong>Missing Values:</strong> {{ stats.missing }}</p>
+        </div>
+    {% endif %}
+
+    <!-- Data Preview Table -->
+    {% if table %}
+        <h2>Preview:</h2>
+        {{ table|safe }}
+    {% endif %}
+
+    <!-- Chart Section -->
+    {% if chart_data %}
+        <div class="chart-section">
+            <h2>📈 Quick Visualization</h2>
+            <canvas id="dataChart"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ chart_data.labels | safe }},
+                    datasets: [{
+                        label: '{{ chart_data.label }}',
+                        data: {{ chart_data.values | safe }},
+                        backgroundColor: '#00f2fe'
+                    }]
+                }
+            });
+        </script>
+    {% endif %}
+
+    <p><a href="{{ url_for('data_tools') }}" style="color: #00f2fe;">⬅ Back to Tools</a></p>
+</body>
+</html>
