@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📊 Data Visualizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a23;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #00f2fe;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: #00f2fe;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0ef6cc;
+        }
+        canvas {
+            background: white;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Data Visualizer</h1>
+    <p>Upload a dataset (CSV) and choose how to visualize it.</p>
+
+    <form action="/tools/data-visualizer" method="POST" enctype="multipart/form-data">
+        <label>Upload CSV File:</label>
+        <input type="file" name="csv_file" required>
+
+        {% if columns %}
+        <label>Select X-axis:</label>
+        <select name="x_axis" required>
+            {% for col in columns %}
+            <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Select Y-axis:</label>
+        <select name="y_axis" required>
+            {% for col in columns %}
+            <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Select Chart Type:</label>
+        <select name="chart_type" required>
+            <option value="bar">Bar Chart</option>
+            <option value="line">Line Chart</option>
+            <option value="pie">Pie Chart</option>
+        </select>
+        {% endif %}
+
+        <button type="submit">Generate Chart</button>
+    </form>
+
+    {% if chart_data %}
+    <h2>Generated Chart:</h2>
+    <canvas id="chart"></canvas>
+    {% endif %}
+</div>
+
+{% if chart_data %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('chart').getContext('2d');
+    new Chart(ctx, {
+        type: '{{ chart_type }}',
+        data: {
+            labels: {{ chart_labels | safe }},
+            datasets: [{
+                label: '{{ y_axis }}',
+                data: {{ chart_data | safe }},
+                backgroundColor: 'rgba(0, 242, 254, 0.5)',
+                borderColor: '#00f2fe',
+                borderWidth: 2
+            }]
+        }
+    });
+</script>
+{% endif %}
+
+</body>
+</html>

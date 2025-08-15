@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Data Cleaner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a23;
+            color: white;
+            text-align: center;
+        }
+        form {
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            background: white;
+            color: black;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+        }
+        .error {
+            color: red;
+        }
+        .summary-box {
+            background: #1a1a40;
+            padding: 10px;
+            margin: 20px auto;
+            width: 50%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧹 Data Cleaner</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv">
+        <button type="submit">Clean Data</button>
+    </form>
+
+    {% if summary %}
+        <div class="summary-box">
+            <p><strong>Rows:</strong> {{ summary['Rows'] }}</p>
+            <p><strong>Columns:</strong> {{ summary['Columns'] }}</p>
+            <p><strong>Missing Values:</strong> {{ summary['Missing Values'] }}</p>
+            <p><strong>Duplicate Rows:</strong> {{ summary['Duplicate Rows'] }}</p>
+        </div>
+    {% endif %}
+
+    {% if table %}
+        <h2>Cleaned Data Preview:</h2>
+        {{ table|safe }}
+    {% endif %}
+
+    {% if download %}
+        <p><a href="{{ url_for('data_cleaner') }}">⬇ Download Cleaned CSV</a></p>
+    {% endif %}
+
+    <p><a href="{{ url_for('data_tools') }}" style="color: #00f2fe;">⬅ Back to Tools</a></p>
+</body>
+</html>

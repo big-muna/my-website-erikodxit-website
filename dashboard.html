@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | ErikodxIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root{
+      --brand: #00e3a3;
+      --brand-dark: #00c893;
+      --ink: #0f172a;
+      --muted: #6b7a90;
+      --bg: #f6fffb;
+      --card: #ffffff;
+      --shadow: 0 14px 30px rgba(0,0,0,.08);
+      --radius: 16px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    header {
+      background: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--brand);
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 30px auto 60px;
+      padding: 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--ink);
+      margin-top: 0;
+    }
+    h2 span {
+      color: var(--brand);
+    }
+    .section-title {
+      font-size: 1.1em;
+      margin-top: 40px;
+      color: var(--brand-dark);
+      border-left: 4px solid var(--brand);
+      padding-left: 12px;
+      font-weight: 700;
+    }
+    .courses, .features {
+      margin-top: 20px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .feature, .course {
+      background: #fafffd;
+      border: 1px solid rgba(0,227,163,.12);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.25s ease;
+      color: var(--ink);
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,.03);
+    }
+    .feature:hover, .course:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 227, 163, 0.15);
+      background: #ffffff;
+    }
+    .feature i, .course i {
+      font-size: 2em;
+      color: var(--brand);
+      margin-bottom: 10px;
+    }
+    .locked {
+      opacity: 0.45;
+      filter: grayscale(0.2);
+    }
+    .unlock-btn {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--brand);
+      color: #000;
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 6px 14px rgba(0, 227, 163, 0.25);
+    }
+    .unlock-btn:hover {
+      background: var(--brand-dark);
+      color: #fff;
+    }
+    .video-section {
+      margin-top: 40px;
+    }
+    .video-card {
+      margin-bottom: 40px;
+      background: #fafffd;
+      border: 1px solid rgba(0,227,163,.12);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.03);
+      transition: .25s;
+    }
+    .video-card:hover{
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      background: #ffffff;
+    }
+    .video-card h3 {
+      color: var(--brand-dark);
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+    .video-card video {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid rgba(0,227,163,.15);
+      margin-bottom: 10px;
+    }
+    .note {
+      font-size: 0.92em;
+      color: var(--muted);
+    }
+    .logout-btn {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .logout-btn a {
+      background: var(--brand);
+      color: #000;
+      padding: 12px 30px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 20px rgba(0,227,163,.25);
+    }
+    .logout-btn a:hover {
+      background: var(--brand-dark);
+      color: #fff;
+    }
+    .ai-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--brand);
+      color: #000;
+      padding: 15px 20px;
+      border-radius: 50%;
+      font-size: 1.4em;
+      box-shadow: 0 10px 24px rgba(0,227,163,.35);
+      cursor: pointer;
+      z-index: 1000;
+      transition: .25s;
+    }
+    .ai-button:hover{
+      background: var(--brand-dark);
+      color:#fff;
+    }
+    .ai-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 300px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 15px;
+      color: var(--ink);
+      box-shadow: 0 20px 40px rgba(0,0,0,.14);
+      z-index: 1001;
+      border: 1px solid rgba(0,227,163,.12);
+    }
+    .ai-popup strong{
+      color: var(--brand-dark);
+    }
+    .ai-popup textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,.08);
+      resize: none;
+      background: #f1fffa;
+      color: #1b2738;
+      margin-top: 10px;
+      min-height: 110px;
+    }
+    .ai-popup button {
+      margin-top: 10px;
+      width: 100%;
+      background: var(--brand);
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: .25s;
+      box-shadow: 0 8px 18px rgba(0,227,163,.25);
+    }
+    .ai-popup button:hover{
+      background: var(--brand-dark);
+      color:#fff;
+    }
+    footer {
+      text-align: center;
+      margin: 40px auto 25px;
+      padding: 15px;
+      font-size: 0.9em;
+      color: var(--muted);
+    }
+    @media (max-width: 600px){
+      h2{font-size:1.7rem;}
+      header{padding:16px 22px;}
+      .container{padding:22px 18px;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ErikodxIT</div>
+</header>
+
+<div class="container">
+  <h2>Welcome, <span>{{ user.name.title() }}</span> 👋</h2>
+
+  <div class="section-title">📚 Your Courses</div>
+<div class="courses">
+  {% for course in [
+    ('ai', 'Artificial Intelligence', 'fa-brain'),
+    ('data-analysis', 'Data Analysis', 'fa-chart-line'),
+    ('ml', 'Machine Learning', 'fa-robot'),
+    ('viz', 'Data Visualization', 'fa-chart-pie'),
+    ('ai-projects', 'AI Projects Course', 'fa-laptop-code'),
+    ('python', 'Python Programming', 'fa-python'),
+    ('sql', 'SQL Database', 'fa-database')
+  ] %}
+    <div class="course {% if course[0] in user_courses %}unlocked{% else %}locked{% endif %}">
+      <i class="fas {{ course[2] }}"></i>
+      <p>{{ course[1] }}</p>
+
+      {% if course[0] in user_courses %}
+        <!-- ✅ Unlocked: Start Learning -->
+        <a class="unlock-btn" href="{{ url_for('open_course', course_slug=course[0]) }}">▶️ Start Learning</a>
+      {% else %}
+        <!-- 🔒 Locked: Disabled button -->
+        <button class="unlock-btn" disabled>🔒 Locked</button>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+
+  <div class="section-title">🎬 Training Videos</div>
+  <div class="video-section">
+    <div class="video-card">
+      <h3>🤖 AI Training - Getting Started</h3>
+      <video controls>
+        <source src="/static/video/ai-training.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="note">Understand how AI works and get started with building smart systems.</p>
+    </div>
+
+    <div class="video-card">
+      <h3>📊 Using Data Tools</h3>
+      <video controls>
+        <source src="/static/video/data-tools.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="note">Learn how to use real-world data tools in cybersecurity and research.</p>
+    </div>
+
+    <div class="video-card">
+      <h3>🎓 Certificate Process</h3>
+      <video controls>
+        <source src="/static/video/cert-process.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="note">Watch how you can earn and download your certificate after learning.</p>
+    </div>
+
+    <div class="video-card">
+      <h3>📚 Learning Materials Access</h3>
+      <video controls>
+        <source src="/static/video/materials-guide.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="note">Access PDFs, lectures, and class files from this platform with ease.</p>
+    </div>
+  </div>
+
+  <div class="section-title">🛠️ Tools & Actions</div>
+  <div class="features">
+    <a href="/ai-training" class="feature">
+      <i class="fas fa-robot"></i><p>Start AI Training</p>
+    </a>
+    <a href="/data-tools" class="feature">
+      <i class="fas fa-tools"></i><p>Access Data Tools</p>
+    </a>
+    <a href="{{ url_for('collect_certificate') }}" class="feature">
+      <i class="fas fa-certificate"></i>
+      <p>Download Certificate</p>
+    </a>
+    <a href="/materials" class="feature">
+      <i class="fas fa-book"></i><p>Learning Materials</p>
+    </a>
+  </div>
+
+  <div class="logout-btn">
+    <a href="/logout">🚪 Logout</a>
+  </div>
+</div>
+
+<!-- AI Chat Button & Popup -->
+<div class="ai-button" onclick="toggleAIPopup()">🤖</div>
+<div class="ai-popup" id="aiPopup">
+  <strong>Ask Erikodx AI</strong>
+  <textarea placeholder="Type your question..."></textarea>
+  <button onclick="alert('AI is thinking...')">Send</button>
+</div>
+
+<script>
+  function toggleAIPopup() {
+    const popup = document.getElementById("aiPopup");
+    popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
+  }
+
+  function checkNotifications() {
+    fetch('/get-notifications')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(n => {
+                alert("📢 Message: " + n.message);
+                fetch(`/mark-notification-read/${n.id}`, {method: "POST"});
+            });
+        });
+  }
+  setInterval(checkNotifications, 30000);
+  checkNotifications();
+</script>
+
+<footer>
+  © 2025 ErikodxIT. All rights reserved.
+</footer>
+
+</body>
+</html>
