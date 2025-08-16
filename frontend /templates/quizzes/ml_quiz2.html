@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ML Projects – Lesson 2 | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #141428;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffb3;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffb3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff7276; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 ML Projects – Lesson 2 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which of these is an example of supervised learning?</p>
+        <label><input type="radio" name="q0" value="Spam email detection" required> Spam email detection</label>
+        <label><input type="radio" name="q0" value="Clustering customers"> Clustering customers</label>
+        <label><input type="radio" name="q0" value="Reinforcement game agent"> Reinforcement game agent</label>
+        <input type="hidden" name="correct0" value="Spam email detection">
+      </div>
+
+      <div class="question-block">
+        <p>2. What is a label in machine learning?</p>
+        <label><input type="radio" name="q1" value="The output or target value" required> The output or target value</label>
+        <label><input type="radio" name="q1" value="The file name"> The file name</label>
+        <label><input type="radio" name="q1" value="Model accuracy"> Model accuracy</label>
+        <input type="hidden" name="correct1" value="The output or target value">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is a dataset?</p>
+        <label><input type="radio" name="q2" value="A collection of data samples" required> A collection of data samples</label>
+        <label><input type="radio" name="q2" value="An ML model"> An ML model</label>
+        <label><input type="radio" name="q2" value="A learning algorithm"> A learning algorithm</label>
+        <input type="hidden" name="correct2" value="A collection of data samples">
+      </div>
+
+      <div class="question-block">
+        <p>4. What is a feature in machine learning?</p>
+        <label><input type="radio" name="q3" value="An input variable" required> An input variable</label>
+        <label><input type="radio" name="q3" value="The output result"> The output result</label>
+        <label><input type="radio" name="q3" value="A software bug"> A software bug</label>
+        <input type="hidden" name="correct3" value="An input variable">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which of the following is a common ML dataset?</p>
+        <label><input type="radio" name="q4" value="MNIST" required> MNIST</label>
+        <label><input type="radio" name="q4" value="Excel"> Excel</label>
+        <label><input type="radio" name="q4" value="YouTube"> YouTube</label>
+        <input type="hidden" name="correct4" value="MNIST">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+        }
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #38bdf8;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        button:hover {
+            background-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Python Quiz 2</h1>
+    <div class="quiz-container">
+        <form id="quizForm">
+            <div class="question">
+                <p>1. What is the output of <code>len("Python")</code>?</p>
+                <input type="radio" name="q1" value="6"> 6<br>
+                <input type="radio" name="q1" value="5"> 5<br>
+                <input type="radio" name="q1" value="7"> 7<br>
+            </div>
+            <div class="question">
+                <p>2. Which keyword is used to define a function in Python?</p>
+                <input type="radio" name="q2" value="func"> func<br>
+                <input type="radio" name="q2" value="define"> define<br>
+                <input type="radio" name="q2" value="def"> def<br>
+            </div>
+            <div class="question">
+                <p>3. How do you start a comment in Python?</p>
+                <input type="radio" name="q3" value="//"> //<br>
+                <input type="radio" name="q3" value="#"> #<br>
+                <input type="radio" name="q3" value="<!--"> &lt;!--<br>
+            </div>
+            <div class="question">
+                <p>4. What is the correct file extension for Python files?</p>
+                <input type="radio" name="q4" value=".pt"> .pt<br>
+                <input type="radio" name="q4" value=".py"> .py<br>
+                <input type="radio" name="q4" value=".python"> .python<br>
+            </div>
+            <div class="question">
+                <p>5. What will <code>print(type(3.5))</code> output?</p>
+                <input type="radio" name="q5" value="int"> int<br>
+                <input type="radio" name="q5" value="float"> float<br>
+                <input type="radio" name="q5" value="str"> str<br>
+            </div>
+
+            <button type="button" onclick="checkAnswers()">Submit</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            let answers = {
+                q1: "6",
+                q2: "def",
+                q3: "#",
+                q4: ".py",
+                q5: "float"
+            };
+            for (let q in answers) {
+                let selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+            document.getElementById("result").innerText = `You scored ${score} / 5`;
+        }
+    </script>
+
+</body>
+</html>

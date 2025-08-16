@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Quiz 5 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 5</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL function returns the number of rows in a query result?</p>
+        <label><input type="radio" name="q0" value="COUNT()" required> COUNT()</label>
+        <label><input type="radio" name="q0" value="SUM()"> SUM()</label>
+        <label><input type="radio" name="q0" value="TOTAL()"> TOTAL()</label>
+        <input type="hidden" name="correct0" value="COUNT()">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which SQL statement is used to create a new table?</p>
+        <label><input type="radio" name="q1" value="CREATE TABLE" required> CREATE TABLE</label>
+        <label><input type="radio" name="q1" value="NEW TABLE"> NEW TABLE</label>
+        <label><input type="radio" name="q1" value="MAKE TABLE"> MAKE TABLE</label>
+        <input type="hidden" name="correct1" value="CREATE TABLE">
+      </div>
+
+      <div class="question-block">
+        <p>3. What does the SQL WHERE clause do?</p>
+        <label><input type="radio" name="q2" value="Filters records" required> Filters records</label>
+        <label><input type="radio" name="q2" value="Sorts records"> Sorts records</label>
+        <label><input type="radio" name="q2" value="Groups records"> Groups records</label>
+        <input type="hidden" name="correct2" value="Filters records">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which SQL keyword is used to sort the result-set?</p>
+        <label><input type="radio" name="q3" value="ORDER BY" required> ORDER BY</label>
+        <label><input type="radio" name="q3" value="SORT BY"> SORT BY</label>
+        <label><input type="radio" name="q3" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct3" value="ORDER BY">
+      </div>
+
+      <div class="question-block">
+        <p>5. How do you delete all records from a table without deleting the table itself?</p>
+        <label><input type="radio" name="q4" value="DELETE FROM table_name" required> DELETE FROM table_name</label>
+        <label><input type="radio" name="q4" value="DROP TABLE table_name"> DROP TABLE table_name</label>
+        <label><input type="radio" name="q4" value="REMOVE ALL FROM table_name"> REMOVE ALL FROM table_name</label>
+        <input type="hidden" name="correct4" value="DELETE FROM table_name">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+  </div>
+</body>
+</html>

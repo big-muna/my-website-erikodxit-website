@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Quiz 16 | ErikodxIT</title>
+  <style>
+    body {
+      background: #101840;
+      color: #3399ff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #1a237e;
+      max-width: 700px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(51, 153, 255, 0.5);
+    }
+    h1 {
+      text-align: center;
+      color: #66b3ff;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+    }
+    .question-block {
+      margin-bottom: 28px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.15em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 7px 0;
+      cursor: pointer;
+      color: #cce6ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #3399ff;
+      color: #fff;
+      padding: 14px 35px;
+      border: none;
+      border-radius: 30px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 20px #3399ff;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2879d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 16</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which SQL function returns the largest value of a column?</p>
+        <label><input type="radio" name="q0" value="MAX()" required> MAX()</label>
+        <label><input type="radio" name="q0" value="MIN()"> MIN()</label>
+        <label><input type="radio" name="q0" value="AVG()"> AVG()</label>
+        <input type="hidden" name="correct0" value="MAX()">
+      </div>
+
+      <div class="question-block">
+        <p>2. What does the GROUP BY clause do?</p>
+        <label><input type="radio" name="q1" value="Groups rows with the same values" required> Groups rows with the same values</label>
+        <label><input type="radio" name="q1" value="Filters rows"> Filters rows</label>
+        <label><input type="radio" name="q1" value="Sorts rows"> Sorts rows</label>
+        <input type="hidden" name="correct1" value="Groups rows with the same values">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which keyword is used to combine result sets without duplicates?</p>
+        <label><input type="radio" name="q2" value="UNION" required> UNION</label>
+        <label><input type="radio" name="q2" value="INTERSECT"> INTERSECT</label>
+        <label><input type="radio" name="q2" value="EXCEPT"> EXCEPT</label>
+        <input type="hidden" name="correct2" value="UNION">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which clause filters groups after aggregation?</p>
+        <label><input type="radio" name="q3" value="HAVING" required> HAVING</label>
+        <label><input type="radio" name="q3" value="WHERE"> WHERE</label>
+        <label><input type="radio" name="q3" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct3" value="HAVING">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is the purpose of the SQL LIKE operator?</p>
+        <label><input type="radio" name="q4" value="Pattern matching" required> Pattern matching</label>
+        <label><input type="radio" name="q4" value="Joining tables"> Joining tables</label>
+        <label><input type="radio" name="q4" value="Deleting records"> Deleting records</label>
+        <input type="hidden" name="correct4" value="Pattern matching">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

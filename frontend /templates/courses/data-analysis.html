@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Analysis | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a23;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 280px;
+      background: #12123a;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 255, 255, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #00c2ff;
+      margin-bottom: 15px;
+    }
+
+    .video-item {
+      background: #1e1e40;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .video-item.locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .video-item:hover, .video-item.active {
+      border-color: #00c2ff;
+      background: #2a2a5a;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 40px 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      color: #00c2ff;
+      margin-bottom: 10px;
+    }
+
+    .video-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 20px 0 10px;
+    }
+
+    video {
+      width: 100%;
+      max-height: 500px;
+      border: 3px solid #00c2ff;
+      border-radius: 12px;
+    }
+
+    .next-quiz {
+      margin-top: 20px;
+    }
+
+    .next-quiz a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00c2ff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 25px;
+      text-decoration: none;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .chat-box {
+      margin-top: 40px;
+      background: #12123a;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.1);
+    }
+
+    .chat-box h3 {
+      margin-top: 0;
+      color: #00c2ff;
+    }
+
+    .chat-box textarea {
+      width: 100%;
+      height: 80px;
+      background: #0a0a23;
+      color: #fff;
+      border: 1px solid #00c2ff;
+      border-radius: 8px;
+      padding: 10px;
+      resize: vertical;
+    }
+
+    .chat-box button {
+      margin-top: 10px;
+      background: #00c2ff;
+      border: none;
+      color: #000;
+      padding: 10px 25px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .ai-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #00c2ff;
+      color: #000;
+      padding: 15px 20px;
+      border-radius: 50%;
+      font-size: 1.4em;
+      box-shadow: 0 0 12px #00c2ff;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .ai-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 300px;
+      background: #1e1e3f;
+      border-radius: 10px;
+      padding: 15px;
+      color: #fff;
+      box-shadow: 0 0 20px #00c2ff;
+      z-index: 999;
+    }
+
+    .ai-popup textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      background: #12123a;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .ai-popup button {
+      margin-top: 10px;
+      width: 100%;
+      background: #00c2ff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: 180px;
+        overflow-x: scroll;
+        white-space: nowrap;
+      }
+      .video-item {
+        display: inline-block;
+        width: 200px;
+        margin-right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar" id="video-list">
+    <h2>📊 Data Lessons</h2>
+  </div>
+
+  <div class="main-content">
+    <h1>📊 Data Analysis</h1>
+    <p>Explore methods to clean, organize, and analyze real-world data.</p>
+
+    <div class="video-title" id="video-title">Loading...</div>
+    <video id="main-video" controls>
+      <source src="" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+
+    <div class="next-quiz" id="quiz-link"></div>
+
+    <div class="chat-box">
+  <h3>Ask Your Instructor</h3>
+  <form method="POST" action="{{ url_for('ask_question', course_slug=course_slug) }}">
+    <textarea name="question" placeholder="Type your question or feedback here..." required></textarea>
+    <button type="submit">Send Question</button>
+  </form>
+</div>
+
+  <div class="ai-button" onclick="toggleAIPopup()">🤖</div>
+
+  <div class="ai-popup" id="aiPopup">
+    <strong>Ask Erikodx AI</strong>
+    <textarea placeholder="Type your question..."></textarea>
+    <button onclick="alert('AI is thinking...')">Send</button>
+  </div>
+
+  <script>
+    const userProgress = parseInt("{{ progress }}") || 0;
+
+    const videos = Array.from({ length: 20 }, (_, i) => ({
+      title: `Lesson ${i + 1}: Data Analysis Topic ${i + 1}`,
+      file: `/static/video/data-analysis/${i + 1}.mp4`
+    }));
+
+    const videoList = document.getElementById("video-list");
+    const mainVideo = document.getElementById("main-video");
+    const videoTitle = document.getElementById("video-title");
+    const quizLink = document.getElementById("quiz-link");
+
+    function loadVideo(index) {
+      const video = videos[index];
+      mainVideo.querySelector("source").src = video.file;
+      mainVideo.load();
+      videoTitle.textContent = video.title;
+
+      document.querySelectorAll('.video-item').forEach(v => v.classList.remove("active"));
+      document.querySelectorAll('.video-item')[index].classList.add("active");
+
+      quizLink.innerHTML = `
+        <a href="/quiz/data-analysis/${index + 1}">🎯 Take Quiz for Lesson ${index + 1}</a>
+        <a href="/materials/data-analysis/${index + 1}">📄 Download Notes</a>
+      `;
+
+      if (index === videos.length - 1 && userProgress >= index) {
+        quizLink.innerHTML += `<br><a href="/certificate/data-analysis" style="background:#00ffcc;">🎓 Download Certificate</a>`;
+      }
+    }
+
+    videos.forEach((video, index) => {
+      const div = document.createElement("div");
+      div.className = "video-item" + (index > userProgress ? " locked" : "");
+      div.innerText = video.title;
+      if (index <= userProgress) div.onclick = () => loadVideo(index);
+      videoList.appendChild(div);
+    });
+
+    loadVideo(userProgress);
+
+    function toggleAIPopup() {
+      const popup = document.getElementById("aiPopup");
+      popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
+    }
+  </script>
+
+</body>
+</html>

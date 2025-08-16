@@ -1,0 +1,19 @@
+<!-- templates/enter_code.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Access Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Unlock {{ course_slug.replace('-', ' ').title() }}</h2>
+
+    <form method="POST">
+        <label>Access Code:</label>
+        <input type="text" name="access_code" placeholder="Enter your code" required>
+        <button type="submit">Unlock</button>
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">⬅ Back to Dashboard</a></p>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Courses | ErikodxIT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+  :root{
+    --brand:#00e3a3;
+    --brand-dark:#00c893;
+    --ink:#0f172a;
+    --muted:#7c8aa0;
+    --bg:#f6fffb;
+    --card:#ffffff;
+    --dark:#0a0a23;
+    --shadow:0 14px 30px rgba(0,0,0,.08);
+    --radius:18px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
+
+  body{background:var(--bg);color:var(--ink);line-height:1.6;}
+
+  /* ===== NAV ===== */
+  header{
+    background:#fff;
+    padding:18px 34px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    position:sticky;top:0;z-index:100;
+  }
+  .logo{font-size:1.7rem;font-weight:700;color:var(--brand);}
+  nav a{
+    color:var(--ink);text-decoration:none;font-weight:500;margin-left:22px;
+    transition:.2s;
+  }
+  nav a:hover{color:var(--brand-dark);}
+
+  /* ===== HERO ===== */
+  .hero{
+    width:100%;
+    background:linear-gradient(135deg,#eafff7, #fafffd);
+    padding:80px 20px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before,
+  .hero::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(0,227,163,.15);
+    filter:blur(60px);
+    z-index:0;
+  }
+  .hero::before{top:-40px;left:-40px;}
+  .hero::after{right:-60px;bottom:-60px;}
+  .hero h1{
+    position:relative;z-index:1;
+    font-size:2.6rem;margin-bottom:10px;color:var(--ink);
+  }
+  .hero p{
+    position:relative;z-index:1;
+    color:var(--muted);max-width:680px;margin:0 auto 28px;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container{
+    width:92%;max-width:1200px;margin:0 auto;padding:50px 0 70px;
+  }
+
+  .grid{
+    display:grid;gap:28px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }
+
+  /* ===== COURSE CARD ===== */
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 24px 22px;
+    position:relative;
+    overflow:hidden;
+    transition:.25s;
+    transform-style:preserve-3d;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 32px rgba(0,227,163,.18);
+  }
+  .card .icon{
+    width:52px;height:52px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(0,227,163,.12);
+    color:var(--brand);
+    border-radius:12px;
+    font-size:1.35rem;
+    margin-bottom:16px;
+  }
+  .card h3{
+    font-size:1.15rem;margin-bottom:8px;color:var(--ink);
+  }
+  .card p{
+    font-size:.95rem;color:var(--muted);margin-bottom:18px;
+  }
+
+  .meta{
+    display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
+  }
+  .tag{
+    background:rgba(0,227,163,.14);
+    color:#008a65;
+    font-size:.75rem;
+    padding:4px 8px;border-radius:20px;
+  }
+
+  .card .cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--brand);
+    color:#000;
+    padding:9px 16px;border-radius:28px;
+    text-decoration:none;font-weight:600;font-size:.9rem;
+    transition:.22s;
+    box-shadow:0 6px 14px rgba(0,227,163,.28);
+  }
+  .card .cta:hover{
+    background:var(--brand-dark);color:#fff;transform:translateY(-1px);
+  }
+
+  /* ===== CTA BOTTOM ===== */
+  .cta-wide{
+    margin-top:58px;text-align:center;
+  }
+  .cta-wide a{
+    background:var(--brand);
+    color:#000;text-decoration:none;font-weight:700;
+    padding:15px 34px;border-radius:32px;font-size:1.05rem;
+    box-shadow:0 10px 24px rgba(0,227,163,.3);
+    transition:.25s;
+  }
+  .cta-wide a:hover{background:var(--brand-dark);color:#fff;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--dark);color:#ccc;text-align:center;padding:24px 16px;
+  }
+  .social{
+    margin-top:12px;display:flex;justify-content:center;gap:12px;
+  }
+  .social a{
+    color:#fff;font-size:1.15rem;width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;
+    transition:.25s;
+  }
+  .social a:hover{background:var(--brand);color:#000;transform:translateY(-2px);}
+
+  @media (max-width:600px){
+    .hero h1{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ErikodxIT</div>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('show_courses') }}">Courses</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Explore Our Courses</h1>
+  <p>Career-focused, beginner-friendly tracks that take you from **zero → job‑ready** with real projects & certificates.</p>
+</section>
+
+<main class="container">
+  <div class="grid">
+
+    <!-- AI -->
+    <article class="card">
+      <div class="icon"><i class="fas fa-robot"></i></div>
+      <h3>Artificial Intelligence</h3>
+      <p>Understand the fundamentals of AI and build intelligent systems using Python.</p>
+      <div class="meta">
+        <span class="tag">Beginner → Intermediate</span>
+        <span class="tag">Python</span>
+        <span class="tag">NLP, CV</span>
+      </div>
+      <a class="cta" href="{{ url_for('register') }}">Start AI <i class="fas fa-arrow-right"></i></a>
+    </article>
+
+    <!-- Data Analysis -->
+    <article class="card">
+      <div class="icon"><i class="fas fa-chart-pie"></i></div>
+      <h3>Data Analysis</h3>
+      <p>Master Excel, Python & Power BI to clean, analyze and tell stories with data.</p>
+      <div class="meta">
+        <span class="tag">Beginner Friendly</span>
+        <span class="tag">Excel / Power BI</span>
+        <span class="tag">EDA</span>
+      </div>
+      <a class="cta" href="{{ url_for('register') }}">Start Data Analysis <i class="fas fa-arrow-right"></i></a>
+    </article>
+
+    <!-- ML -->
+    <article class="card">
+      <div class="icon"><i class="fas fa-brain"></i></div>
+      <h3>Machine Learning</h3>
+      <p>Supervised & unsupervised learning, model evaluation and deployment basics.</p>
+      <div class="meta">
+        <span class="tag">Intermediate</span>
+        <span class="tag">Scikit‑Learn</span>
+        <span class="tag">Regression / Clustering</span>
+      </div>
+      <a class="cta" href="{{ url_for('register') }}">Start ML <i class="fas fa-arrow-right"></i></a>
+    </article>
+
+    <!-- SQL -->
+    <article class="card">
+      <div class="icon"><i class="fas fa-database"></i></div>
+      <h3>SQL for Data Science</h3>
+      <p>Query, join and aggregate data to power dashboards, analytics & pipelines.</p>
+      <div class="meta">
+        <span class="tag">All Levels</span>
+        <span class="tag">PostgreSQL / MySQL</span>
+        <span class="tag">Joins / Window Funcs</span>
+      </div>
+      <a class="cta" href="{{ url_for('register') }}">Start SQL <i class="fas fa-arrow-right"></i></a>
+    </article>
+
+    <!-- Capstone -->
+    <article class="card">
+      <div class="icon"><i class="fas fa-project-diagram"></i></div>
+      <h3>Capstone Projects</h3>
+      <p>Ship real projects you can showcase to recruiters & hiring managers.</p>
+      <div class="meta">
+        <span class="tag">Portfolio Ready</span>
+        <span class="tag">End‑to‑End</span>
+        <span class="tag">Mentorship</span>
+      </div>
+      <a class="cta" href="{{ url_for('register') }}">Start Building <i class="fas fa-arrow-right"></i></a>
+    </article>
+
+  </div>
+
+  <div class="cta-wide">
+    <a href="{{ url_for('register') }}">🚀 Get Started Now</a>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 ErikodxIT • Empowering You with Future Tech Skills.
+  <div class="social">
+    <a href="https://facebook.com/yourhandle" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/erikodxit/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/yourhandle" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://linkedin.com/in/yourhandle" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>

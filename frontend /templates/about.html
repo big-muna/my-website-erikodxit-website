@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About | ErikodxIT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+  :root{
+    --brand:#00e3a3;
+    --brand-dark:#00c893;
+    --ink:#0f172a;
+    --muted:#6b7a90;
+    --bg:#f6fffb;
+    --card:#ffffff;
+    --dark:#0a0a23;
+    --shadow:0 14px 30px rgba(0,0,0,.08);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
+  body{background:var(--bg);color:var(--ink);line-height:1.7;}
+
+  /* ================= NAV ================= */
+  header{
+    background:#fff;padding:18px 30px;display:flex;justify-content:space-between;align-items:center;
+    box-shadow:0 2px 12px rgba(0,0,0,.04);position:sticky;top:0;z-index:100;
+  }
+  .logo{font-size:1.8rem;font-weight:700;color:var(--brand);}
+  nav{
+    display:flex;align-items:center;gap:24px;
+  }
+  nav a{
+    color:var(--ink);text-decoration:none;font-weight:500;transition:.3s;
+  }
+  nav a:hover{color:var(--brand-dark);}
+  .hamburger{
+    display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer;
+  }
+
+  /* mobile menu */
+  @media(max-width:860px){
+    nav{
+      position:fixed;top:64px;right:0;left:0;background:#fff;
+      flex-direction:column;padding:18px 0;gap:16px;transform:translateY(-100%);
+      box-shadow:0 12px 24px rgba(0,0,0,.06);
+      transition:.25s ease;
+    }
+    nav.open{transform:translateY(0);}
+    .hamburger{display:block;}
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    text-align:center;color:var(--ink);
+    padding:100px 20px 80px;background:linear-gradient(135deg,#eafff7,#fafffd);
+    position:relative;overflow:hidden;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+    background:rgba(0,227,163,.15);filter:blur(60px);z-index:0;
+  }
+  .hero::before{top:-70px;left:-70px;}
+  .hero::after{bottom:-100px;right:-100px;}
+  .hero h1{
+    position:relative;z-index:1;font-size:2.8rem;font-weight:700;margin-bottom:12px;
+  }
+  .hero p{
+    position:relative;z-index:1;color:var(--muted);max-width:750px;margin:0 auto;font-size:1.1rem;
+  }
+
+  /* ================= LAYOUT ================= */
+  .container{width:92%;max-width:1150px;margin:0 auto;padding:60px 0;}
+
+  /* ================= SECTIONS ================= */
+  .section{
+    background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:32px 28px;margin-bottom:28px;transition:transform .2s;
+  }
+  .section:hover{transform:translateY(-3px);}
+  .section h2{
+    color:var(--brand-dark);font-size:1.4rem;margin-bottom:10px;display:flex;align-items:center;gap:10px;
+  }
+  .section p, .section li{color:#39465b;font-size:1rem;}
+  ul{padding-left:22px;margin-top:8px;}
+  li{margin-bottom:6px;}
+
+  /* ================= GRID FEATURES ================= */
+  .grid{
+    display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  }
+  .feature{
+    background:#f7fffc;border:1px solid rgba(0,227,163,.15);
+    border-radius:14px;padding:20px 18px;font-size:.95rem;transition:.3s;
+  }
+  .feature i{
+    color:var(--brand);font-size:1.2rem;margin-right:6px;
+  }
+  .feature:hover{
+    background:var(--brand);color:#fff;transform:translateY(-4px);
+  }
+  .feature:hover i{color:#fff;}
+
+  /* ================= INSTRUCTOR ================= */
+  .instructor{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .avatar{
+    width:90px;height:90px;border-radius:50%;background:#eafff7;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--brand);font-size:2rem;font-weight:700;
+    box-shadow:0 0 0 6px rgba(0,227,163,.08);
+  }
+
+  /* ================= CTA ================= */
+  .cta-box{text-align:center;padding:40px 20px;}
+  .cta-btn{
+    display:inline-block;background:var(--brand);color:#000;text-decoration:none;font-weight:700;
+    padding:14px 32px;border-radius:32px;box-shadow:0 10px 24px rgba(0,227,163,.3);transition:.3s;
+  }
+  .cta-btn:hover{background:var(--brand-dark);color:#fff;}
+
+  /* ================= FAQ ================= */
+  .faq-item{border-bottom:1px solid rgba(0,0,0,.05);}
+  .faq-q{
+    cursor:pointer;padding:14px 0;display:flex;justify-content:space-between;
+    align-items:center;font-weight:600;
+  }
+  .faq-a{
+    max-height:0;overflow:hidden;transition:max-height .25s ease;color:#4b566b;
+  }
+  .faq-q i{color:var(--brand);}
+  .faq-item.active .faq-a{max-height:400px;margin-bottom:12px;}
+
+  /* ================= FOOTER ================= */
+  footer{
+    background:var(--dark);color:#ccc;text-align:center;padding:24px 16px;margin-top:40px;
+  }
+  .social{margin-top:12px;display:flex;justify-content:center;gap:12px;}
+  .social a{
+    color:#fff;font-size:1.1rem;width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
+    transition:.25s;
+  }
+  .social a:hover{background:var(--brand);color:#000;transform:translateY(-2px);}
+
+  /* ================= RESPONSIVE TWEAKS ================= */
+  @media(max-width:768px){
+    .hero h1{font-size:2.2rem;}
+    .hero p{font-size:1rem;}
+    .section{padding:26px 20px;}
+  }
+  @media(max-width:480px){
+    .hero{padding:70px 16px;}
+    .hero h1{font-size:1.9rem;}
+    .cta-btn{padding:12px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ErikodxIT</div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <nav id="mobileNav">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('show_courses') }}">Courses</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>About ErikodxIT</h1>
+  <p>We make <strong>tech skills practical, accessible and career‑ready</strong> for everyone — from absolute beginners to professionals upskilling for the data‑driven world.</p>
+</section>
+
+<main class="container">
+
+  <section class="section">
+    <h2><i class="fas fa-lightbulb"></i> Who We Are</h2>
+    <p>
+      ErikodxIT is an online learning platform focused on <strong>Data Analysis, Machine Learning and Artificial Intelligence</strong>. We teach through real projects, simple explanations and mentor support — so you can <strong>actually build, ship and get hired</strong>.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+    <p>
+      To equip pre‑ and post‑career professionals with the <strong>hands‑on, marketable skills</strong> needed to thrive in a data and AI‑driven economy.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-eye"></i> Our Vision</h2>
+    <p>
+      To be a <strong>global launchpad</strong> where anyone can learn cutting‑edge data & AI skills and connect them to real career opportunities.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-book-open"></i> What You’ll Learn</h2>
+    <div class="grid">
+      <div class="feature"><i class="fas fa-brain"></i> Introduction to AI (NLP, CV, Agents)</div>
+      <div class="feature"><i class="fas fa-database"></i> Data Analysis with Python, Excel & SQL</div>
+      <div class="feature"><i class="fas fa-robot"></i> Machine Learning & Predictive Modeling</div>
+      <div class="feature"><i class="fas fa-chart-line"></i> Visualization with Power BI & Tableau</div>
+      <div class="feature"><i class="fas fa-gear"></i> Automation, datasets & end‑to‑end projects</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-toolbox"></i> Tools You’ll Master</h2>
+    <ul>
+      <li><i class="fab fa-python"></i> Python, Jupyter, Google Colab</li>
+      <li><i class="fas fa-code"></i> VS Code, Pandas, NumPy</li>
+      <li><i class="fas fa-cogs"></i> Scikit‑Learn, Matplotlib, Seaborn</li>
+      <li><i class="fas fa-chart-pie"></i> Power BI, Tableau, Excel</li>
+      <li><i class="fas fa-server"></i> SQL (PostgreSQL / MySQL)</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-certificate"></i> Certificates</h2>
+    <p>
+      Complete a path and earn an <strong>official ErikodxIT certificate</strong> — verifiable, downloadable, and perfect for LinkedIn or your portfolio.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-user-tie"></i> Meet Your Instructor</h2>
+    <div class="instructor">
+      <div class="avatar">E</div>
+      <div>
+        <strong>Erik Odinaka</strong> — Certified AI & Data Analyst with 5+ years of teaching and industry experience.<br>
+        Passionate about turning complex ideas into <strong>simple, practical lessons</strong>.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><i class="fas fa-circle-question"></i> FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">Will I get a certificate? <i class="fas fa-plus"></i></div>
+        <div class="faq-a"><p>Yes! After completing your track, you’ll receive a verified certificate you can share on LinkedIn.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need prior experience? <i class="fas fa-plus"></i></div>
+        <div class="faq-a"><p>No. Our courses start from the absolute basics — and then scale up.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long do courses last? <i class="fas fa-plus"></i></div>
+        <div class="faq-a"><p>Most learners finish a full path in 4–12 weeks (self‑paced).</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What platforms are used? <i class="fas fa-plus"></i></div>
+        <div class="faq-a"><p>We use our web platform, Zoom/Meet for live calls, and GitHub/Drive for resources.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box">
+    <a class="cta-btn" href="{{ url_for('register') }}">🚀 Start Learning Now</a>
+  </div>
+
+  <section class="section">
+    <h2><i class="fas fa-envelope"></i> Need Help?</h2>
+    <p>Email us anytime at
+      <a href="mailto:support@erikodxit.com" style="color:var(--brand);text-decoration:none;">support@erikodxit.com</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 ErikodxIT • Empowering You with Future Tech Skills.
+  <div class="social">
+    <a href="https://facebook.com/yourhandle" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/erikodxit/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/yourhandle" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://linkedin.com/in/yourhandle" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav  = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+    hamburger.querySelector('i').classList.toggle('fa-bars');
+    hamburger.querySelector('i').classList.toggle('fa-xmark');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      item.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      icon.classList.toggle('fa-plus');
+      icon.classList.toggle('fa-minus');
+    });
+  });
+</script>
+
+</body>
+</html>

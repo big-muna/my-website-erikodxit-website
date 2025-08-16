@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Quiz 18 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐍 Python Quiz 18</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What does the `range(5)` function return?</p>
+        <label><input type="radio" name="q0" value="A list from 1 to 5" required> A list from 1 to 5</label>
+        <label><input type="radio" name="q0" value="A sequence of numbers from 0 to 4"> A sequence of numbers from 0 to 4</label>
+        <label><input type="radio" name="q0" value="A list of 5 zeros"> A list of 5 zeros</label>
+        <input type="hidden" name="correct0" value="A sequence of numbers from 0 to 4">
+      </div>
+
+      <div class="question-block">
+        <p>2. How do you comment multiple lines in Python?</p>
+        <label><input type="radio" name="q1" value="Using # for each line" required> Using # for each line</label>
+        <label><input type="radio" name="q1" value="Using triple quotes ''' or """"> Using triple quotes ''' or """</label>
+        <label><input type="radio" name="q1" value="Using /* ... */"> Using /* ... */</label>
+        <input type="hidden" name="correct1" value="Using triple quotes ''' or &quot;&quot;&quot;">
+      </div>
+
+      <div class="question-block">
+        <p>3. What will `len('Hello')` return?</p>
+        <label><input type="radio" name="q2" value="5" required> 5</label>
+        <label><input type="radio" name="q2" value="4"> 4</label>
+        <label><input type="radio" name="q2" value="6"> 6</label>
+        <input type="hidden" name="correct2" value="5">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which of these is used to define a function in Python?</p>
+        <label><input type="radio" name="q3" value="def" required> def</label>
+        <label><input type="radio" name="q3" value="function"> function</label>
+        <label><input type="radio" name="q3" value="func"> func</label>
+        <input type="hidden" name="correct3" value="def">
+      </div>
+
+      <div class="question-block">
+        <p>5. What is the output of `print(type([]))`?</p>
+        <label><input type="radio" name="q4" value="&lt;class 'list'&gt;" required> &lt;class 'list'&gt;</label>
+        <label><input type="radio" name="q4" value="&lt;class 'tuple'&gt;"> &lt;class 'tuple'&gt;</label>
+        <label><input type="radio" name="q4" value="&lt;class 'dict'&gt;"> &lt;class 'dict'&gt;</label>
+        <input type="hidden" name="correct4" value="&lt;class 'list'&gt;">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+  </div>
+</body>
+</html>

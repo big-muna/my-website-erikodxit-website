@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 60px 20px 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #38bdf8;
+      margin-bottom: 40px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    form, .admin-section {
+      background-color: #1e293b;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    select, input, button, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: none;
+    }
+    select, input, textarea {
+      background-color: #334155;
+      color: #f8fafc;
+    }
+    button {
+      background-color: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #0ea5e9;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+      width: 100%;
+    }
+    .admin-section {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+    .danger { background-color: #f87171 !important; }
+    .code-result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #1e40af;
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .error-message { color: #f87171; text-align: center; }
+    a { margin-top: 30px; color: #60a5fa; text-decoration: none; font-weight: bold; display: block; text-align: center; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h2>📋 Admin Panel</h2>
+  <div class="container">
+
+    <!-- CODE GENERATOR FORM -->
+     <form method="POST" action="{{ url_for('admin_generate_code') }}">
+       <label>Select Course(s)</label>
+        <!-- FIX: keep value as course slug (key) but display the name (val) -->
+         <select name="courses" multiple size="5" required>
+        {% for key, val in courses.items() %}
+      <option value="{{ key }}">{{ val }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Number of Codes per Course Set</label>
+  <input type="number" name="count" value="1" min="1" max="20" required>
+
+  <!-- FIX: remove 'name="action"' because it's not used in backend -->
+  <button type="submit">Generate Code(s)</button>
+</form>
+
+
+    {% if codes %}
+    <div class="code-result">
+      <h3>✅ {{ codes|length }} Code{{ 's' if codes|length > 1 else '' }} Generated</h3>
+      {% for code in codes %}
+        <p><strong>{{ code['code'] }}</strong><br>→ {{ code['course'] }}<br>⏳ Expires: {{ code['expires'] or 'None' }}</p>
+        {% if not loop.last %}<hr>{% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p class="error-message">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+
+    <!-- ADMIN SECTIONS -->
+    <div class="admin-grid">
+
+      <div class="admin-section">
+        <h3>👥 Manage Users</h3>
+          <form method="POST" action="{{ url_for('manage_users') }}">
+          <input type="text" name="query" placeholder="Enter Username or Email" required>
+        <button type="submit">Search / Edit User</button>
+     </form>
+   </div>
+
+
+      <!-- Enroll Student -->
+      <div class="admin-section">
+        <h3>Enroll Student</h3>
+        <form method="POST" action="{{ url_for('enroll_student') }}">
+          <input type="email" name="email" placeholder="Student Email" required>
+          <select name="course" required>
+            {% for key, val in courses.items() %}
+              <option value="{{ key }}">{{ val }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Enroll</button>
+        </form>
+      </div>
+
+      <!-- Manage Course Videos -->
+      <div class="admin-section">
+        <h3>🎞️ Manage Course Videos</h3>
+        <p>Add or remove videos by selecting a course.</p>
+        <a href="{{ url_for('video_manager') }}">
+          <button>Open Video Manager</button>
+        </a>
+      </div>
+
+      <!-- Track Student Progress -->
+      <div class="admin-section">
+        <h3>📈 Track Student Progress</h3>
+        <form action="{{ url_for('track_student_progress') }}" method="POST">
+          <input type="email" name="email" placeholder="Enter Student Email" required>
+          <button type="submit">View Progress</button>
+        </form>
+        {% if progress_rows %}
+          <table style="width: 100%; margin-top: 20px; border-collapse: collapse; color: #f8fafc;">
+            <thead>
+              <tr style="background: #334155;">
+                <th>Course</th><th>Percent</th><th>Last Seen</th><th>Updated At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in progress_rows %}
+                <tr>
+                  <td>{{ row.course }}</td>
+                  <td>{{ row.percent }}%</td>
+                  <td>{{ row.last_seen }}</td>
+                  <td>{{ row.updated_at }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+
+     <div class="admin-section">
+         <h3>🏅 Upload Certificate</h3>
+           <form method="POST" action="{{ url_for('upload_certificate') }}" enctype="multipart/form-data">
+             <input type="email" name="email" placeholder="Student Email" required>
+               <input type="text" name="title" placeholder="Certificate Title" required>
+               <select name="course" required>
+                {% for key, val in courses.items() %}
+             <option value="{{ key }}">{{ val }}</option>
+           {% endfor %}
+        </select>
+     <input type="file" name="certificate" accept=".pdf,.jpg,.png,.jpeg" required>
+    <button type="submit">Upload Certificate</button>
+  </form>
+</div>
+
+
+      <!-- Notify Completion -->
+      <div class="admin-section">
+        <h3>📢 Notify Completion / Send Certificate</h3>
+        <form method="POST" action="{{ url_for('notify_student') }}">
+          <input type="email" name="email" placeholder="Student Email" required>
+          <textarea name="message" placeholder="Optional custom message"></textarea>
+          <button type="submit">Notify Student</button>
+        </form>
+      </div>
+
+      <!-- Remove Student -->
+      <div class="admin-section">
+        <h3>❌ Remove Student</h3>
+        <form method="POST" action="{{ url_for('remove_student') }}">
+          <input type="email" name="email" placeholder="Student Email" required>
+          <button class="danger" type="submit">Remove Student</button>
+        </form>
+      </div>
+
+      <!-- Renewal Notification -->
+      <div class="admin-section">
+        <h3>🔔 Renewal Notification</h3>
+        <form method="POST" action="{{ url_for('renewal_notify') }}">
+          <input type="email" name="email" placeholder="Student Email" required>
+          <button type="submit">Send Renewal Notification</button>
+        </form>
+      </div>
+
+    </div>
+
+    <a href="/admin-logout">🚪 Logout</a>
+  </div>
+</body>
+</html>

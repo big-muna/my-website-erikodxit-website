@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 20 – Data Analysis | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffc3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Quiz 20 – Data Analysis</h1>
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What does correlation measure?</p>
+        <label><input type="radio" name="q0" value="Relationship between variables"> Relationship between variables</label>
+        <label><input type="radio" name="q0" value="Distribution of data"> Distribution of data</label>
+        <label><input type="radio" name="q0" value="Data range"> Data range</label>
+        <input type="hidden" name="correct0" value="Relationship between variables">
+      </div>
+
+      <div class="question-block">
+        <p>2. What value indicates perfect positive correlation?</p>
+        <label><input type="radio" name="q1" value="1"> 1</label>
+        <label><input type="radio" name="q1" value="0"> 0</label>
+        <label><input type="radio" name="q1" value="-1"> -1</label>
+        <input type="hidden" name="correct1" value="1">
+      </div>
+
+      <div class="question-block">
+        <p>3. What does <code>corr()</code> method return?</p>
+        <label><input type="radio" name="q2" value="Correlation matrix"> Correlation matrix</label>
+        <label><input type="radio" name="q2" value="Summary stats"> Summary stats</label>
+        <label><input type="radio" name="q2" value="Histograms"> Histograms</label>
+        <input type="hidden" name="correct2" value="Correlation matrix">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which chart best shows correlation?</p>
+        <label><input type="radio" name="q3" value="Scatter plot"> Scatter plot</label>
+        <label><input type="radio" name="q3" value="Pie chart"> Pie chart</label>
+        <label><input type="radio" name="q3" value="Line chart"> Line chart</label>
+        <input type="hidden" name="correct3" value="Scatter plot">
+      </div>
+
+      <div class="question-block">
+        <p>5. What correlation value means no relationship?</p>
+        <label><input type="radio" name="q4" value="0"> 0</label>
+        <label><input type="radio" name="q4" value="1"> 1</label>
+        <label><input type="radio" name="q4" value="-1"> -1</label>
+        <input type="hidden" name="correct4" value="0">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>
+

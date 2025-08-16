@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Quiz 18 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0e153a;
+      color: #4a90e2;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #1b2461;
+      max-width: 700px;
+      padding: 35px 45px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
+    }
+    h1 {
+      text-align: center;
+      color: #82b1ff;
+      margin-bottom: 32px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
+    .question-block {
+      margin-bottom: 28px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.15em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 7px 0;
+      cursor: pointer;
+      color: #c3d7ff;
+      font-weight: 600;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #4a90e2;
+      color: #fff;
+      padding: 14px 38px;
+      border: none;
+      border-radius: 30px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 22px #4a90e2;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3c76c1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 18</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which clause is used to filter rows based on conditions?</p>
+        <label><input type="radio" name="q0" value="WHERE" required> WHERE</label>
+        <label><input type="radio" name="q0" value="GROUP BY"> GROUP BY</label>
+        <label><input type="radio" name="q0" value="ORDER BY"> ORDER BY</label>
+        <input type="hidden" name="correct0" value="WHERE">
+      </div>
+
+      <div class="question-block">
+        <p>2. What does the COUNT() function do?</p>
+        <label><input type="radio" name="q1" value="Counts rows" required> Counts rows</label>
+        <label><input type="radio" name="q1" value="Calculates sum"> Calculates sum</label>
+        <label><input type="radio" name="q1" value="Finds average"> Finds average</label>
+        <input type="hidden" name="correct1" value="Counts rows">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is a foreign key used for?</p>
+        <label><input type="radio" name="q2" value="Enforce referential integrity" required> Enforce referential integrity</label>
+        <label><input type="radio" name="q2" value="Increase performance"> Increase performance</label>
+        <label><input type="radio" name="q2" value="Store large data"> Store large data</label>
+        <input type="hidden" name="correct2" value="Enforce referential integrity">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which SQL keyword removes duplicate rows in a result set?</p>
+        <label><input type="radio" name="q3" value="DISTINCT" required> DISTINCT</label>
+        <label><input type="radio" name="q3" value="UNIQUE"> UNIQUE</label>
+        <label><input type="radio" name="q3" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct3" value="DISTINCT">
+      </div>
+
+      <div class="question-block">
+        <p>5. How do you sort query results by a column in ascending order?</p>
+        <label><input type="radio" name="q4" value="ORDER BY column ASC" required> ORDER BY column ASC</label>
+        <label><input type="radio" name="q4" value="SORT BY column"> SORT BY column</label>
+        <label><input type="radio" name="q4" value="GROUP BY column"> GROUP BY column</label>
+        <input type="hidden" name="correct4" value="ORDER BY column ASC">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

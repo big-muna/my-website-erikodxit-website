@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask the Instructor</title>
+  <style>
+    body {
+      margin: 0 auto;
+      background: #0a0a23;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      padding: 15px 20px;
+      background: #12122d;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 1px solid #222;
+    }
+
+    .chat-window {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chat-bubble {
+      background: #1e90ff;
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      align-self: flex-end;
+      color: #fff;
+      word-wrap: break-word;
+    }
+
+    .chat-bubble.instructor {
+      background: #444;
+      align-self: flex-start;
+    }
+
+    .chat-input-area {
+      padding: 10px;
+      background: #111;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid #222;
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-family: inherit;
+      background: #222;
+      color: white;
+    }
+
+    .send-btn, .vn-btn, .upload-btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #1e90ff;
+      color: white;
+    }
+
+    .send-btn:hover, .vn-btn:hover, .upload-btn:hover {
+      background: #0077cc;
+    }
+
+    .upload-input {
+      display: none;
+    }
+
+    .flash-message {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin: 5px auto;
+      text-align: center;
+      font-size: 14px;
+      width: 95%;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Ask the Instructor</div>
+
+  <div class="chat-window">
+    {% if questions %}
+      {% for q in questions %}
+        {% if q.user_id == session.get('user_id') %}
+          <div class="chat-bubble">{{ q.question_text }}</div>
+        {% else %}
+          <div class="chat-bubble instructor">{{ q.question_text }}</div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div style="color: gray; text-align: center; margin-top: 20px;">
+        No messages yet. Start the conversation below.
+      </div>
+    {% endif %}
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- ✅ Form points to ask_question without course_slug -->
+  <form class="chat-input-area" 
+        method="POST" 
+        action="{{ url_for('ask_question') }}" 
+        enctype="multipart/form-data">
+    <textarea name="question" rows="1" placeholder="Type your message..." required></textarea>
+    
+    <label class="upload-btn" for="upload-photo">📷</label>
+    <input type="file" id="upload-photo" name="image" accept="image/*" class="upload-input">
+
+    <button type="button" class="vn-btn">🎙️</button>
+    <button type="submit" class="send-btn">➡️</button>
+  </form>
+</body>
+</html>

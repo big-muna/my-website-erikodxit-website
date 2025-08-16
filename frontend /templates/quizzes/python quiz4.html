@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Quiz 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            background: #ffcc00;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #e6b800;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Quiz 4</h1>
+    <form id="quizForm">
+        <div class="question">
+            <p>1. Which of these is NOT a Python data type?</p>
+            <label><input type="radio" name="q1" value="a"> string</label><br>
+            <label><input type="radio" name="q1" value="b"> integer</label><br>
+            <label><input type="radio" name="q1" value="c"> character</label>
+        </div>
+        <div class="question">
+            <p>2. What is the output of <code>3 * "hi"</code>?</p>
+            <label><input type="radio" name="q2" value="a"> hihihi</label><br>
+            <label><input type="radio" name="q2" value="b"> hi3</label><br>
+            <label><input type="radio" name="q2" value="c"> Error</label>
+        </div>
+        <div class="question">
+            <p>3. How do you start a comment in Python?</p>
+            <label><input type="radio" name="q3" value="a"> //</label><br>
+            <label><input type="radio" name="q3" value="b"> <!-- --> </label><br>
+            <label><input type="radio" name="q3" value="c"> #</label>
+        </div>
+        <div class="question">
+            <p>4. Which keyword is used to create a class in Python?</p>
+            <label><input type="radio" name="q4" value="a"> object</label><br>
+            <label><input type="radio" name="q4" value="b"> class</label><br>
+            <label><input type="radio" name="q4" value="c"> define</label>
+        </div>
+        <div class="question">
+            <p>5. What is the output of <code>bool(0)</code>?</p>
+            <label><input type="radio" name="q5" value="a"> True</label><br>
+            <label><input type="radio" name="q5" value="b"> False</label><br>
+            <label><input type="radio" name="q5" value="c"> None</label>
+        </div>
+        <button type="button" onclick="checkAnswers()">Submit</button>
+    </form>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const answers = {q1: 'c', q2: 'a', q3: 'c', q4: 'b', q5: 'b'};
+            for (let q in answers) {
+                let selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+            alert(`You scored ${score} out of 5`);
+        }
+    </script>
+</body>
+</html>

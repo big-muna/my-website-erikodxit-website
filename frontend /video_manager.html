@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎬 Video Manager | Admin Panel</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; background: #0a0a23; color: #fff; margin: 0; padding: 2rem; }
+    h1, h2, h3 { color: #00ffff; }
+    form { margin-bottom: 2rem; }
+    select, input, textarea, button {
+      padding: 0.6rem; margin-top: 0.5rem; border: none; border-radius: 4px; width: 100%; max-width: 500px;
+      background: #1a1a2e; color: #fff; box-sizing: border-box;
+    }
+    input[type="file"] { padding: 0.5rem; }
+    button { background-color: #00bcd4; color: white; cursor: pointer; font-weight: bold; margin-top: 0.5rem; transition: 0.3s; }
+    button:hover { background-color: #0097a7; }
+    ul { list-style: none; padding: 0; }
+    li { background: #1f1f3b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px; }
+    .delete-btn { background-color: #f44336; padding: 0.5rem 1rem; margin-left: 1rem; border-radius: 4px; border: none; color: white; }
+    .delete-btn:hover { background-color: #d32f2f; }
+    hr { border-color: #444; margin: 2rem 0; }
+    label { display: block; font-weight: bold; margin-top: 1rem; }
+    .note { color: #aaa; font-size: 0.9rem; }
+    .url-upload { margin-top: 1rem; background: #222244; padding: 1rem; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>🎬 Video Manager</h1>
+
+  <!-- Course Selector -->
+  <form method="GET" action="{{ url_for('video_manager') }}">
+    <label for="course">Select Course:</label>
+    <select name="course" id="course" onchange="this.form.submit()" required>
+      <option disabled {% if not selected_course %}selected{% endif %}>-- Choose a course --</option>
+      {% for course in courses %}
+        <option value="{{ course.slug }}" {% if selected_course == course.slug %}selected{% endif %}>
+          {{ course.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </form>
+
+  {% if selected_course %}
+    <hr>
+    <h2>📂 Managing: {{ selected_course }}</h2>
+
+    <!-- Upload Form -->
+    <h3>📤 Upload New Video</h3>
+    <form method="POST" action="{{ url_for('video_manager', course=selected_course) }}" enctype="multipart/form-data">
+      <input type="hidden" name="course_slug" value="{{ selected_course }}">
+
+      <label for="title">Video Title:</label>
+      <input type="text" name="title" id="title" required>
+
+      <label for="file">Choose Video File:</label>
+      <input type="file" name="video_file" id="file" accept="video/*">
+
+      <button type="submit">📤 Upload from File</button>
+    </form>
+
+    <!-- Optional: Upload via URL (e.g., YouTube) -->
+    <div class="url-upload">
+      <h4>🌐 Or Add Video by URL</h4>
+      <form method="POST" action="{{ url_for('video_manager', course=selected_course) }}">
+        <input type="hidden" name="course_slug" value="{{ selected_course }}">
+        <label for="youtube_url">Video URL (e.g., YouTube):</label>
+        <input type="text" name="youtube_url" id="youtube_url" placeholder="https://www.youtube.com/watch?v=...">
+        <button type="submit">🔗 Add by URL</button>
+      </form>
+    </div>
+
+    <!-- Video List -->
+    <h3>📺 Current Videos</h3>
+    {% if videos %}
+      <ul>
+        {% for video in videos %}
+          <li>
+            <strong>{{ video.title }}</strong>
+            {% if video.is_youtube %}
+              — <a href="{{ video.video_url }}" target="_blank">Watch</a>
+            {% else %}
+              — <a href="{{ video.video_url }}" target="_blank">View</a>
+            {% endif %}
+            <form method="POST" action="{{ url_for('delete_video', video_id=video.id) }}" style="display:inline;">
+              <button type="submit" class="delete-btn">❌ Delete</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="note">No videos uploaded for this course yet.</p>
+    {% endif %}
+
+  {% else %}
+    <p class="note">Please select a course to manage its videos.</p>
+  {% endif %}
+
+</body>
+</html>

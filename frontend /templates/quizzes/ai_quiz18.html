@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Lesson 18 – Quiz | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffc3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+
+    .incorrect {
+      color: #ff7276;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚖️ AI Lesson 18 – Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is AI bias?</p>
+        <label><input type="radio" name="q0" value="Unfair preferences in AI decisions" required> Unfair preferences in AI decisions</label>
+        <label><input type="radio" name="q0" value="AI winning a game"> AI winning a game</label>
+        <label><input type="radio" name="q0" value="Fast AI training"> Fast AI training</label>
+        <input type="hidden" name="correct0" value="Unfair preferences in AI decisions">
+      </div>
+
+      <div class="question-block">
+        <p>2. What causes AI bias?</p>
+        <label><input type="radio" name="q1" value="Biased training data" required> Biased training data</label>
+        <label><input type="radio" name="q1" value="Too many colors"> Too many colors</label>
+        <label><input type="radio" name="q1" value="Loud speakers"> Loud speakers</label>
+        <input type="hidden" name="correct1" value="Biased training data">
+      </div>
+
+      <div class="question-block">
+        <p>3. Why is AI ethics important?</p>
+        <label><input type="radio" name="q2" value="To make AI fair and responsible" required> To make AI fair and responsible</label>
+        <label><input type="radio" name="q2" value="To watch TV"> To watch TV</label>
+        <label><input type="radio" name="q2" value="To charge phones"> To charge phones</label>
+        <input type="hidden" name="correct2" value="To make AI fair and responsible">
+      </div>
+
+      <div class="question-block">
+        <p>4. What is an ethical issue in AI?</p>
+        <label><input type="radio" name="q3" value="Privacy invasion" required> Privacy invasion</label>
+        <label><input type="radio" name="q3" value="Playing football"> Playing football</label>
+        <label><input type="radio" name="q3" value="Telling jokes"> Telling jokes</label>
+        <input type="hidden" name="correct3" value="Privacy invasion">
+      </div>
+
+      <div class="question-block">
+        <p>5. Who should be responsible for ethical AI?</p>
+        <label><input type="radio" name="q4" value="AI developers and users" required> AI developers and users</label>
+        <label><input type="radio" name="q4" value="Only the robots"> Only the robots</label>
+        <label><input type="radio" name="q4" value="No one"> No one</label>
+        <input type="hidden" name="correct4" value="AI developers and users">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

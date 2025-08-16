@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 14 – Data Analysis | ErikodxIT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0a0a23;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+    }
+
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffc3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Quiz 14 – Data Analysis</h1>
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is the result of <code>df.head()</code> in pandas?</p>
+        <label><input type="radio" name="q0" value="First 5 rows"> First 5 rows</label>
+        <label><input type="radio" name="q0" value="Last 5 rows"> Last 5 rows</label>
+        <label><input type="radio" name="q0" value="First column"> First column</label>
+        <input type="hidden" name="correct0" value="First 5 rows">
+      </div>
+
+      <div class="question-block">
+        <p>2. What does <code>df.describe()</code> return?</p>
+        <label><input type="radio" name="q1" value="Summary statistics"> Summary statistics</label>
+        <label><input type="radio" name="q1" value="Null values"> Null values</label>
+        <label><input type="radio" name="q1" value="Column names"> Column names</label>
+        <input type="hidden" name="correct1" value="Summary statistics">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which function checks for missing data?</p>
+        <label><input type="radio" name="q2" value="isnull()"> isnull()</label>
+        <label><input type="radio" name="q2" value="missing()"> missing()</label>
+        <label><input type="radio" name="q2" value="checknull()"> checknull()</label>
+        <input type="hidden" name="correct2" value="isnull()">
+      </div>
+
+      <div class="question-block">
+        <p>4. What does <code>dropna()</code> do?</p>
+        <label><input type="radio" name="q3" value="Removes missing rows"> Removes missing rows</label>
+        <label><input type="radio" name="q3" value="Fills missing rows"> Fills missing rows</label>
+        <label><input type="radio" name="q3" value="Renames columns"> Renames columns</label>
+        <input type="hidden" name="correct3" value="Removes missing rows">
+      </div>
+
+      <div class="question-block">
+        <p>5. What does <code>df.columns</code> return?</p>
+        <label><input type="radio" name="q4" value="List of column names"> List of column names</label>
+        <label><input type="radio" name="q4" value="List of row values"> List of row values</label>
+        <label><input type="radio" name="q4" value="Total rows"> Total rows</label>
+        <input type="hidden" name="correct4" value="List of column names">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+
+</body>
+</html>
+

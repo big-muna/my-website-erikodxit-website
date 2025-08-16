@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ML Projects – Lesson 13 | ErikodxIT</title>
+  <style>
+    body {
+      background: #141428;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1a1a40;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffb3;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00ffb3;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+    }
+    .feedback-table th, .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+    .correct { color: lightgreen; font-weight: bold; }
+    .incorrect { color: #ff7276; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 ML Projects – Lesson 13 Quiz</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <script>alert("{{ message }}");</script>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What is ensemble learning?</p>
+        <label><input type="radio" name="q0" value="Combining multiple models to improve performance" required> Combining multiple models to improve performance</label>
+        <label><input type="radio" name="q0" value="Running one model faster"> Running one model faster</label>
+        <label><input type="radio" name="q0" value="Using a bigger screen"> Using a bigger screen</label>
+        <input type="hidden" name="correct0" value="Combining multiple models to improve performance">
+      </div>
+
+      <div class="question-block">
+        <p>2. What is bagging?</p>
+        <label><input type="radio" name="q1" value="Training multiple models on random data subsets" required> Training multiple models on random data subsets</label>
+        <label><input type="radio" name="q1" value="Storing models in folders"> Storing models in folders</label>
+        <label><input type="radio" name="q1" value="Reducing model size"> Reducing model size</label>
+        <input type="hidden" name="correct1" value="Training multiple models on random data subsets">
+      </div>
+
+      <div class="question-block">
+        <p>3. What is boosting?</p>
+        <label><input type="radio" name="q2" value="Sequentially training models to fix previous errors" required> Sequentially training models to fix previous errors</label>
+        <label><input type="radio" name="q2" value="Shuffling data faster"> Shuffling data faster</label>
+        <label><input type="radio" name="q2" value="Updating website content"> Updating website content</label>
+        <input type="hidden" name="correct2" value="Sequentially training models to fix previous errors">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which is a bagging algorithm?</p>
+        <label><input type="radio" name="q3" value="Random Forest" required> Random Forest</label>
+        <label><input type="radio" name="q3" value="Keras"> Keras</label>
+        <label><input type="radio" name="q3" value="Pandas"> Pandas</label>
+        <input type="hidden" name="correct3" value="Random Forest">
+      </div>
+
+      <div class="question-block">
+        <p>5. Which is a boosting method?</p>
+        <label><input type="radio" name="q4" value="Gradient Boosting" required> Gradient Boosting</label>
+        <label><input type="radio" name="q4" value="Flask"> Flask</label>
+        <label><input type="radio" name="q4" value="Django"> Django</label>
+        <input type="hidden" name="correct4" value="Gradient Boosting">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    {% if feedback %}
+    <h2>🧾 Review Your Answers</h2>
+    <table class="feedback-table">
+      <tr>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+      </tr>
+      {% for item in feedback %}
+      <tr>
+        <td>Question {{ item.q }}</td>
+        <td>{{ item.your_answer }}</td>
+        <td>{{ item.correct_answer }}</td>
+        <td class="{{ 'correct' if item.status.startswith('✅') else 'incorrect' }}">{{ item.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>

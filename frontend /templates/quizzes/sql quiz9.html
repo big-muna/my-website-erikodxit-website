@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Quiz 9 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0a0a23;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px 20px;
+      padding: 30px;
+      background: #12123a;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+      margin-bottom: 25px;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+      font-weight: 500;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 10px #00bfff;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+    .feedback-table {
+      margin-top: 40px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #292947;
+      color: #fff;
+    }
+    .feedback-table th,
+    .feedback-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .feedback-table th {
+      background-color: #00bfff;
+      color: #000;
+    }
+    .correct {
+      color: #90ee90;
+      font-weight: 700;
+    }
+    .incorrect {
+      color: #ff7276;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 9</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. What SQL clause is used to filter the results returned by a SELECT query?</p>
+        <label><input type="radio" name="q0" value="WHERE" required> WHERE</label>
+        <label><input type="radio" name="q0" value="ORDER BY"> ORDER BY</label>
+        <label><input type="radio" name="q0" value="GROUP BY"> GROUP BY</label>
+        <input type="hidden" name="correct0" value="WHERE">
+      </div>
+
+      <div class="question-block">
+        <p>2. Which SQL statement is used to retrieve data from a database?</p>
+        <label><input type="radio" name="q1" value="SELECT" required> SELECT</label>
+        <label><input type="radio" name="q1" value="INSERT"> INSERT</label>
+        <label><input type="radio" name="q1" value="UPDATE"> UPDATE</label>
+        <input type="hidden" name="correct1" value="SELECT">
+      </div>
+
+      <div class="question-block">
+        <p>3. How do you sort the result-set in descending order?</p>
+        <label><input type="radio" name="q2" value="ORDER BY ... DESC" required> ORDER BY ... DESC</label>
+        <label><input type="radio" name="q2" value="ORDER BY ... ASC"> ORDER BY ... ASC</label>
+        <label><input type="radio" name="q2" value="SORT BY ... DESC"> SORT BY ... DESC</label>
+        <input type="hidden" name="correct2" value="ORDER BY ... DESC">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which SQL keyword is used to return only distinct (different) values?</p>
+        <label><input type="radio" name="q3" value="DISTINCT" required> DISTINCT</label>
+        <label><input type="radio" name="q3" value="UNIQUE"> UNIQUE</label>
+        <label><input type="radio" name="q3" value="DIFFERENT"> DIFFERENT</label>
+        <input type="hidden" name="correct3" value="DISTINCT">
+      </div>
+
+      <div class="question-block">
+        <p>5. What does the COUNT() function do in SQL?</p>
+        <label><input type="radio" name="q4" value="Counts the number of rows" required> Counts the number of rows</label>
+        <label><input type="radio" name="q4" value="Calculates sum of a column"> Calculates sum of a column</label>
+        <label><input type="radio" name="q4" value="Finds the average value"> Finds the average value</label>
+        <input type="hidden" name="correct4" value="Counts the number of rows">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

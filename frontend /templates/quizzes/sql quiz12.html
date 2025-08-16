@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Quiz 12 | ErikodxIT</title>
+  <style>
+    body {
+      background: #0a0a23;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px 20px;
+      padding: 30px;
+      background: #12123a;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+    }
+    h1 {
+      text-align: center;
+      color: #00bfff;
+      margin-bottom: 25px;
+    }
+    .question-block {
+      margin-bottom: 25px;
+    }
+    .question-block p {
+      font-weight: 700;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      color: #cce7ff;
+      font-weight: 500;
+    }
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: #00bfff;
+      color: #000;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 10px #00bfff;
+    }
+    button:hover {
+      background-color: #008fcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💾 SQL Quiz 12</h1>
+
+    <form method="POST">
+      <input type="hidden" name="total" value="5">
+
+      <div class="question-block">
+        <p>1. Which statement is used to delete a table and all its data?</p>
+        <label><input type="radio" name="q0" value="DROP TABLE" required> DROP TABLE</label>
+        <label><input type="radio" name="q0" value="DELETE TABLE"> DELETE TABLE</label>
+        <label><input type="radio" name="q0" value="REMOVE TABLE"> REMOVE TABLE</label>
+        <input type="hidden" name="correct0" value="DROP TABLE">
+      </div>
+
+      <div class="question-block">
+        <p>2. What is the default sorting order of the ORDER BY clause?</p>
+        <label><input type="radio" name="q1" value="Ascending (ASC)" required> Ascending (ASC)</label>
+        <label><input type="radio" name="q1" value="Descending (DESC)"> Descending (DESC)</label>
+        <label><input type="radio" name="q1" value="No sorting"> No sorting</label>
+        <input type="hidden" name="correct1" value="Ascending (ASC)">
+      </div>
+
+      <div class="question-block">
+        <p>3. Which SQL function returns the average value of a numeric column?</p>
+        <label><input type="radio" name="q2" value="AVG()" required> AVG()</label>
+        <label><input type="radio" name="q2" value="SUM()"> SUM()</label>
+        <label><input type="radio" name="q2" value="COUNT()"> COUNT()</label>
+        <input type="hidden" name="correct2" value="AVG()">
+      </div>
+
+      <div class="question-block">
+        <p>4. Which clause is used to combine the result-set of two or more SELECT statements?</p>
+        <label><input type="radio" name="q3" value="UNION" required> UNION</label>
+        <label><input type="radio" name="q3" value="JOIN"> JOIN</label>
+        <label><input type="radio" name="q3" value="INTERSECT"> INTERSECT</label>
+        <input type="hidden" name="correct3" value="UNION">
+      </div>
+
+      <div class="question-block">
+        <p>5. How can you retrieve unique rows only from a table?</p>
+        <label><input type="radio" name="q4" value="Use DISTINCT keyword" required> Use DISTINCT keyword</label>
+        <label><input type="radio" name="q4" value="Use UNIQUE keyword"> Use UNIQUE keyword</label>
+        <label><input type="radio" name="q4" value="Use DIFFERENT keyword"> Use DIFFERENT keyword</label>
+        <input type="hidden" name="correct4" value="Use DISTINCT keyword">
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>
