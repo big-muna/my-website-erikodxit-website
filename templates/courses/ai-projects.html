@@ -1,327 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI Projects Course | ErikodxIT</title>
-  <style>
-    body {
-      margin: 0;
-      background: #0a0a23;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      width: 280px;
-      background: #12123a;
-      overflow-y: auto;
-      padding: 25px;
-      box-shadow: 2px 0 10px rgba(0, 255, 255, 0.1);
-    }
-
-    .sidebar h2 {
-      color: #00c2ff;
-      margin-bottom: 20px;
-      font-size: 1.4em;
-    }
-
-    .video-item {
-      background: #1e1e40;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .video-item.locked {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .video-item:hover,
-    .video-item.active {
-      border-color: #00c2ff;
-      background: #2a2a5a;
-      transform: scale(1.02);
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 40px 30px;
-      overflow-y: auto;
-      background: #0f0f2b;
-    }
-
-    h1 {
-      color: #00c2ff;
-      margin-bottom: 10px;
-    }
-
-    .video-title {
-      margin: 20px 0 10px;
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #f0f8ff;
-    }
-
-    video {
-      width: 100%;
-      max-height: 500px;
-      border: 3px solid #00c2ff;
-      border-radius: 12px;
-    }
-
-    .next-quiz {
-      margin-top: 20px;
-    }
-
-    .next-quiz a {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #00c2ff;
-      color: #000;
-      font-weight: bold;
-      border-radius: 25px;
-      text-decoration: none;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
-
-    .progress-bar {
-      margin-top: 25px;
-      height: 25px;
-      background: #333;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: inset 0 0 5px #000;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: #00c2ff;
-      width: 0;
-      text-align: center;
-      line-height: 25px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .chat-box {
-      margin-top: 50px;
-      background: #12123a;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.1);
-    }
-
-    .chat-box h3 {
-      margin-top: 0;
-      color: #00c2ff;
-    }
-
-    .chat-box textarea {
-      width: 100%;
-      height: 80px;
-      background: #0a0a23;
-      color: #fff;
-      border: 1px solid #00c2ff;
-      border-radius: 8px;
-      padding: 10px;
-      resize: vertical;
-    }
-
-    .chat-box button {
-      margin-top: 10px;
-      background: #00c2ff;
-      border: none;
-      color: #000;
-      padding: 10px 25px;
-      font-weight: bold;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-
-    .ai-button {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #00c2ff;
-      color: #000;
-      padding: 15px 20px;
-      border-radius: 50%;
-      font-size: 1.4em;
-      box-shadow: 0 0 12px #00c2ff;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .ai-popup {
-      display: none;
-      position: fixed;
-      bottom: 90px;
-      right: 25px;
-      width: 300px;
-      background: #1e1e3f;
-      border-radius: 10px;
-      padding: 15px;
-      color: #fff;
-      box-shadow: 0 0 20px #00c2ff;
-      z-index: 999;
-    }
-
-    .ai-popup textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      resize: none;
-      background: #12123a;
-      color: #fff;
-      margin-top: 10px;
-    }
-
-    .ai-popup button {
-      margin-top: 10px;
-      width: 100%;
-      background: #00c2ff;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #000;
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        height: 180px;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-
-      .video-item {
-        display: inline-block;
-        width: 200px;
-        margin-right: 10px;
-      }
-
-      .main-content {
-        padding: 20px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | ErikodxIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <!-- keep your CSS from before -->
 </head>
 <body>
-  <div class="sidebar" id="video-list">
-    <h2>📂 Projects</h2>
-  </div>
+  <!-- Floating Background Orbs -->
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+  <div class="floating-orb orb-4"></div>
 
-  <div class="main-content">
-    <h1>💡 AI Projects Course</h1>
-    <p>Explore and build AI-driven solutions with hands-on real-world projects.</p>
-
-    <div class="video-title" id="video-title">Loading...</div>
-    <video id="main-video" controls>
-      <source src="" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <div class="next-quiz" id="quiz-link"></div>
-
-    <div class="progress-bar">
-      <div class="progress-bar-fill" id="progress-fill">0%</div>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">ErikodxIT</div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('about') }}" class="active">About</a>
+        <a href="{{ url_for('show_courses') }}">Courses</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="chat-box">
-  <h3>Ask Your Instructor</h3>
-  <form method="POST" action="{{ url_for('ask_question', course_slug=course_slug) }}">
-    <textarea name="question" placeholder="Type your question or feedback here..." required></textarea>
-    <button type="submit">Send Question</button>
-  </form>
-</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About ErikodxIT</h1>
+      <p>We make <strong>tech skills practical, accessible and career-ready</strong> for everyone — from absolute beginners to professionals upskilling for the data-driven world.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="playDemo()"><i class="fas fa-play"></i> Watch Demo</button>
+        <a href="{{ url_for('register') }}" class="btn btn-secondary"><i class="fas fa-rocket"></i> Start Learning</a>
+      </div>
+    </div>
+  </section>
 
-  <!-- AI Assistant -->
-  <div class="ai-button" onclick="toggleAIPopup()">🤖</div>
-  <div class="ai-popup" id="aiPopup">
-    <strong>Ask Erikodx AI</strong>
-    <textarea placeholder="Type your question..."></textarea>
-    <button onclick="alert('AI is thinking...')">Send</button>
+  <!-- Stats -->
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-value">5000+</div>
+        <div class="stat-label">Students Trained</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-code"></i></div>
+        <div class="stat-value">200+</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-award"></i></div>
+        <div class="stat-value">50+</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
   </div>
 
+  <!-- Mission -->
+  <div class="container">
+    <section class="section">
+      <h2><i class="fas fa-bullseye section-icon"></i> Our Mission</h2>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Innovation</h3>
+          <p>We inspire learners to create innovative solutions for real-world problems.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h3>Education</h3>
+          <p>Courses are designed to be both beginner-friendly and career-focused.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon"><i class="fas fa-users"></i></div>
+          <h3>Community</h3>
+          <p>We grow together by sharing knowledge, ideas, and opportunities.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Instructor -->
+  <div class="container">
+    <section class="section">
+      <h2><i class="fas fa-chalkboard-user section-icon"></i> Meet the Instructor</h2>
+      <div class="instructor-content">
+        <div class="instructor-avatar">
+          <div class="avatar-circle">E</div>
+          <div class="verified-badge"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="instructor-info">
+          <h3 class="instructor-name">Erik Odx</h3>
+          <p class="instructor-title">Software Engineer & Educator</p>
+          <p class="instructor-description">Passionate about teaching programming, web development, and modern IT tools to help students succeed in their tech careers.</p>
+          <div class="instructor-badges">
+            <span class="badge badge-blue">Full-Stack Dev</span>
+            <span class="badge badge-purple">Cloud</span>
+            <span class="badge badge-green">Mentor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FAQ -->
+  <div class="container">
+    <section class="section">
+      <h2><i class="fas fa-circle-question section-icon"></i> FAQ</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">Do I need prior coding experience? <i class="fas fa-chevron-down faq-icon"></i></button>
+          <div class="faq-answer"><p>No — our beginner courses assume zero prior experience.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you provide certificates? <i class="fas fa-chevron-down faq-icon"></i></button>
+          <div class="faq-answer"><p>Yes, every course comes with a certificate of completion.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="container">
+    <section class="section">
+      <h2><i class="fas fa-star section-icon"></i> Testimonials</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <img src="https://via.placeholder.com/80" alt="Student" class="testimonial-avatar"/>
+          <p class="testimonial-text">“ErikodxIT made learning fun and career-ready. I landed a job thanks to these courses!”</p>
+          <div class="testimonial-name">Jane Doe</div>
+          <div class="testimonial-role">Frontend Developer</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA -->
+  <div class="container">
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to start your tech journey?</h2>
+        <p class="cta-subtitle">Join thousands of learners building real skills today.</p>
+        <div class="cta-buttons">
+          <a href="{{ url_for('register') }}" class="btn btn-white">Get Started</a>
+          <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact -->
+  <div class="container">
+    <section class="section contact-section">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <h3 class="contact-title">Questions?</h3>
+      <p class="contact-text">We’d love to hear from you. Reach us directly at:</p>
+      <a href="mailto:info@erikodxit.com" class="contact-email">info@erikodxit.com</a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">ErikodxIT</div>
+    <p class="footer-text">&copy; 2025 ErikodxIT. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" class="social-link social-fb"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-link social-ig"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-link social-tw"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-link social-li"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    const videos = Array.from({ length: 20 }, (_, i) => ({
-      title: `Project ${i + 1}: AI Task ${i + 1}`,
-      file: `/static/video/ai-projects/${i + 1}.mp4`
-    }));
-
-    let userProgress = parseInt(localStorage.getItem("ai_projects_progress")) || 0;
-
-    const mainVideo = document.getElementById("main-video");
-    const videoTitle = document.getElementById("video-title");
-    const videoList = document.getElementById("video-list");
-    const quizLink = document.getElementById("quiz-link");
-    const progressFill = document.getElementById("progress-fill");
-
-    function updateProgressBar() {
-      const percent = Math.floor((userProgress / (videos.length - 1)) * 100);
-      progressFill.style.width = `${percent}%`;
-      progressFill.textContent = `${percent}%`;
-    }
-
-    function loadVideo(index) {
-      const video = videos[index];
-      mainVideo.querySelector("source").src = video.file;
-      mainVideo.load();
-      videoTitle.textContent = video.title;
-
-      document.querySelectorAll('.video-item').forEach(v => v.classList.remove("active"));
-      document.querySelectorAll('.video-item')[index].classList.add("active");
-
-      quizLink.innerHTML = `
-        <a href="/quiz/ai-projects/${index + 1}">🎯 Take Quiz</a>
-        <a href="/materials/ai-projects/${index + 1}">📄 Notes</a>
-      `;
-
-      if (index === videos.length - 1 && userProgress >= index) {
-        quizLink.innerHTML += `<br><a href="/certificate/ai-projects" style="background:#00ffcc;">🎓 Download Certificate</a>`;
-      }
-
-      mainVideo.onended = () => {
-        if (index >= userProgress && index + 1 < videos.length) {
-          userProgress = index + 1;
-          localStorage.setItem("ai_projects_progress", userProgress);
-          document.querySelectorAll('.video-item')[index + 1]?.classList.remove("locked");
-          updateProgressBar();
-        }
-      };
-    }
-
-    videos.forEach((video, index) => {
-      const div = document.createElement("div");
-      div.className = "video-item" + (index > userProgress ? " locked" : "");
-      div.innerText = video.title;
-      if (index <= userProgress) div.onclick = () => loadVideo(index);
-      videoList.appendChild(div);
+    // Mobile nav toggle
+    document.getElementById('hamburger').addEventListener('click', ()=>{
+      document.getElementById('nav').classList.toggle('open');
     });
 
-    if (videos.length) {
-      loadVideo(userProgress);
-      updateProgressBar();
-    }
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        btn.parentElement.classList.toggle('active');
+      });
+    });
 
-    function toggleAIPopup() {
-      const popup = document.getElementById("aiPopup");
-      popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
+    // Demo button
+    function playDemo() {
+      alert("🎬 Demo video coming soon!");
     }
   </script>
 </body>

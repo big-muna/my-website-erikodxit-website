@@ -19,293 +19,296 @@
     --radius:20px;
   }
   *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
-  body{background:var(--bg);color:var(--ink);line-height:1.7;}
+  body{background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;}
 
-  /* ================= NAV ================= */
-  header{
-    background:#fff;padding:18px 30px;display:flex;justify-content:space-between;align-items:center;
-    box-shadow:0 2px 12px rgba(0,0,0,.04);position:sticky;top:0;z-index:100;
-  }
+  /* Animations */
+  @keyframes fadeInUp {0%{opacity:0;transform:translateY(40px);}100%{opacity:1;transform:translateY(0);}}
+  @keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-12px);}100%{transform:translateY(0);}}
+
+  /* NAV */
+  header{background:#fff;padding:18px 30px;display:flex;justify-content:space-between;align-items:center;
+    box-shadow:0 2px 12px rgba(0,0,0,.04);position:sticky;top:0;z-index:100;}
   .logo{font-size:1.8rem;font-weight:700;color:var(--brand);}
-  nav{
-    display:flex;align-items:center;gap:24px;
-  }
-  nav a{
-    color:var(--ink);text-decoration:none;font-weight:500;transition:.3s;
-  }
-  nav a:hover{color:var(--brand-dark);}
-  .hamburger{
-    display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer;
-  }
-
-  /* mobile menu */
+  nav ul{list-style:none;display:flex;gap:24px;margin:0;padding:0;}
+  nav ul li{margin:0;padding:0;}
+  nav ul li a{color:var(--ink);text-decoration:none;font-weight:500;position:relative;transition:.3s;}
+  nav ul li a::after{content:"";position:absolute;width:0;height:2px;background:var(--brand);bottom:-4px;left:0;transition:.3s;}
+  nav ul li a:hover{color:var(--brand-dark);}
+  nav ul li a:hover::after{width:100%;}
+  .hamburger{display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer;}
   @media(max-width:860px){
-    nav{
-      position:fixed;top:64px;right:0;left:0;background:#fff;
-      flex-direction:column;padding:18px 0;gap:16px;transform:translateY(-100%);
-      box-shadow:0 12px 24px rgba(0,0,0,.06);
-      transition:.25s ease;
-    }
+    nav{position:fixed;top:64px;right:0;left:0;background:#fff;
+      padding:18px 0;transform:translateY(-100%);
+      box-shadow:0 12px 24px rgba(0,0,0,.06);transition:.25s ease;}
     nav.open{transform:translateY(0);}
+    nav ul{flex-direction:column;align-items:center;gap:16px;}
     .hamburger{display:block;}
   }
 
-  /* ================= HERO ================= */
-  .hero{
-    text-align:center;color:var(--ink);
-    padding:100px 20px 80px;background:linear-gradient(135deg,#eafff7,#fafffd);
-    position:relative;overflow:hidden;
-  }
+  /* HERO */
+  .hero{text-align:center;padding:120px 20px 100px;background:linear-gradient(135deg,#eafff7,#fafffd);
+    position:relative;overflow:hidden;}
   .hero::before,.hero::after{
     content:"";position:absolute;width:300px;height:300px;border-radius:50%;
-    background:rgba(0,227,163,.15);filter:blur(60px);z-index:0;
-  }
+    background:rgba(0,227,163,.15);filter:blur(80px);animation:float 6s ease-in-out infinite;}
   .hero::before{top:-70px;left:-70px;}
   .hero::after{bottom:-100px;right:-100px;}
-  .hero h1{
-    position:relative;z-index:1;font-size:2.8rem;font-weight:700;margin-bottom:12px;
-  }
-  .hero p{
-    position:relative;z-index:1;color:var(--muted);max-width:750px;margin:0 auto;font-size:1.1rem;
-  }
+  .hero h1{font-size:3rem;font-weight:700;margin-bottom:14px;
+    animation:fadeInUp .8s ease forwards;background:linear-gradient(90deg,#00e3a3,#00c893);
+    -webkit-background-clip:text;color:transparent;}
+  .hero p{color:var(--muted);max-width:750px;margin:0 auto;font-size:1.15rem;
+    animation:fadeInUp 1.2s ease forwards;}
 
-  /* ================= LAYOUT ================= */
+  /* LAYOUT */
   .container{width:92%;max-width:1150px;margin:0 auto;padding:60px 0;}
-
-  /* ================= SECTIONS ================= */
   .section{
     background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
-    padding:32px 28px;margin-bottom:28px;transition:transform .2s;
-  }
-  .section:hover{transform:translateY(-3px);}
-  .section h2{
-    color:var(--brand-dark);font-size:1.4rem;margin-bottom:10px;display:flex;align-items:center;gap:10px;
-  }
-  .section p, .section li{color:#39465b;font-size:1rem;}
-  ul{padding-left:22px;margin-top:8px;}
-  li{margin-bottom:6px;}
+    padding:32px 28px;margin-bottom:28px;opacity:0;transform:translateY(30px);transition:.3s;}
+  .section.visible{animation:fadeInUp .8s forwards;}
+  .section:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.12);}
+  .section h2{color:var(--brand-dark);font-size:1.6rem;margin-bottom:20px;position:relative;text-align:center;}
+  .section h2::after{content:"";display:block;width:60px;height:4px;background:var(--brand);
+    margin:10px auto 0;border-radius:2px;}
 
-  /* ================= GRID FEATURES ================= */
-  .grid{
-    display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  }
+  /* COURSE FILTER */
+  .filter-buttons{text-align:center;margin-bottom:24px;}
+  .filter-buttons button{
+    border:none;outline:none;background:#f0fdf9;color:var(--ink);padding:10px 20px;
+    margin:5px;border-radius:30px;font-weight:600;cursor:pointer;transition:.3s;}
+  .filter-buttons button.active,
+  .filter-buttons button:hover{background:var(--brand);color:#fff;}
+
+  /* COURSE GRID */
+  .grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
   .feature{
-    background:#f7fffc;border:1px solid rgba(0,227,163,.15);
-    border-radius:14px;padding:20px 18px;font-size:.95rem;transition:.3s;
-  }
-  .feature i{
-    color:var(--brand);font-size:1.2rem;margin-right:6px;
-  }
-  .feature:hover{
-    background:var(--brand);color:#fff;transform:translateY(-4px);
-  }
-  .feature:hover i{color:#fff;}
+    background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);
+    transition:.3s;cursor:pointer;position:relative;}
+  .feature img{width:100%;height:180px;object-fit:cover;transition:.3s;}
+  .feature p{padding:16px;font-size:1.05rem;font-weight:600;color:var(--ink);text-align:center;}
+  .feature::after{
+    content:"";position:absolute;top:0;left:0;width:100%;height:100%;
+    background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.25));opacity:0;transition:.3s;}
+  .feature:hover{transform:translateY(-10px) scale(1.04);}
+  .feature:hover::after{opacity:1;}
+  .feature:hover img{transform:scale(1.1);}
+  .feature:hover p{color:var(--brand);}
 
-  /* ================= INSTRUCTOR ================= */
+  /* INSTRUCTOR */
   .instructor{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
-  .avatar{
-    width:90px;height:90px;border-radius:50%;background:#eafff7;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--brand);font-size:2rem;font-weight:700;
-    box-shadow:0 0 0 6px rgba(0,227,163,.08);
-  }
+  .avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,.12);}
+  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 
-  /* ================= CTA ================= */
-  .cta-box{text-align:center;padding:40px 20px;}
-  .cta-btn{
-    display:inline-block;background:var(--brand);color:#000;text-decoration:none;font-weight:700;
-    padding:14px 32px;border-radius:32px;box-shadow:0 10px 24px rgba(0,227,163,.3);transition:.3s;
-  }
-  .cta-btn:hover{background:var(--brand-dark);color:#fff;}
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;text-align:center;margin-top:30px;}
+  .stat{background:#f7fffc;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.06);}
+  .stat h3{color:var(--brand);font-size:2rem;margin-bottom:6px;}
+  .stat p{color:var(--muted);font-weight:500;}
 
-  /* ================= FAQ ================= */
+  /* TESTIMONIALS */
+  .testimonials{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+  .testimonial{background:#fff;padding:20px;border-radius:14px;box-shadow:0 6px 14px rgba(0,0,0,.08);position:relative;}
+  .testimonial::before{content:"\f10d";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--brand);
+    position:absolute;top:10px;left:14px;font-size:1.2rem;}
+  .testimonial p{margin-bottom:12px;color:var(--ink);}
+  .testimonial strong{color:var(--brand-dark);}
+
+  /* FAQ */
   .faq-item{border-bottom:1px solid rgba(0,0,0,.05);}
-  .faq-q{
-    cursor:pointer;padding:14px 0;display:flex;justify-content:space-between;
-    align-items:center;font-weight:600;
-  }
-  .faq-a{
-    max-height:0;overflow:hidden;transition:max-height .25s ease;color:#4b566b;
-  }
-  .faq-q i{color:var(--brand);}
-  .faq-item.active .faq-a{max-height:400px;margin-bottom:12px;}
+  .faq-q{cursor:pointer;padding:14px 0;display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .faq-item.active .faq-a{max-height:200px;margin-bottom:12px;}
 
-  /* ================= FOOTER ================= */
-  footer{
-    background:var(--dark);color:#ccc;text-align:center;padding:24px 16px;margin-top:40px;
-  }
-  .social{margin-top:12px;display:flex;justify-content:center;gap:12px;}
-  .social a{
-    color:#fff;font-size:1.1rem;width:40px;height:40px;border-radius:50%;
-    background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
-    transition:.25s;
-  }
-  .social a:hover{background:var(--brand);color:#000;transform:translateY(-2px);}
+  /* CTA */
+  .cta-box{text-align:center;padding:50px 20px;}
+  .cta-btn{display:inline-block;background:linear-gradient(90deg,#00e3a3,#00c893);
+    color:#000;font-weight:700;padding:14px 36px;border-radius:40px;
+    box-shadow:0 10px 24px rgba(0,227,163,.3);transition:.3s;}
+  .cta-btn:hover{background:linear-gradient(90deg,#00c893,#00e3a3);color:#fff;transform:scale(1.05);}
 
-  /* ================= RESPONSIVE TWEAKS ================= */
-  @media(max-width:768px){
-    .hero h1{font-size:2.2rem;}
-    .hero p{font-size:1rem;}
-    .section{padding:26px 20px;}
-  }
-  @media(max-width:480px){
-    .hero{padding:70px 16px;}
-    .hero h1{font-size:1.9rem;}
-    .cta-btn{padding:12px 22px;}
-  }
+  /* FOOTER */
+  footer{background:var(--dark);color:#ccc;text-align:center;padding:40px 16px;margin-top:40px;position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#00e3a3,#00c893);}
+  .social{margin-top:14px;display:flex;justify-content:center;gap:14px;}
+  .social a{color:#fff;font-size:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:.3s;}
+  .social a:hover{background:var(--brand);color:#000;transform:translateY(-3px) rotate(10deg);}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">ErikodxIT</div>
-
-  <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-    <i class="fas fa-bars"></i>
-  </button>
-
+  <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
   <nav id="mobileNav">
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('show_courses') }}">Courses</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
+    <ul id="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('show_courses') }}">Courses</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
 <section class="hero">
   <h1>About ErikodxIT</h1>
-  <p>We make <strong>tech skills practical, accessible and career‑ready</strong> for everyone — from absolute beginners to professionals upskilling for the data‑driven world.</p>
+  <p>We make <strong>tech skills practical, accessible and career-ready</strong> for everyone — from absolute beginners to professionals upskilling for the data-driven world.</p>
 </section>
 
 <main class="container">
 
-  <section class="section">
-    <h2><i class="fas fa-lightbulb"></i> Who We Are</h2>
+  <!-- WHO WE ARE -->
+  <section class="section" id="about">
+    <h2>Who We Are</h2>
     <p>
-      ErikodxIT is an online learning platform focused on <strong>Data Analysis, Machine Learning and Artificial Intelligence</strong>. We teach through real projects, simple explanations and mentor support — so you can <strong>actually build, ship and get hired</strong>.
+      ErikodxIT is a modern online learning platform that helps people gain
+      <strong>real-world skills in Data Analysis, Web Development, Python, and Machine Learning</strong>.
+      Since 2020, we’ve empowered thousands of learners worldwide to transform their careers through hands-on,
+      project-based training guided by expert mentors.
     </p>
   </section>
 
+  <!-- MISSION & VISION -->
   <section class="section">
-    <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
-    <p>
-      To equip pre‑ and post‑career professionals with the <strong>hands‑on, marketable skills</strong> needed to thrive in a data and AI‑driven economy.
-    </p>
+    <h2>Our Mission & Vision</h2>
+    <div class="stats">
+      <div class="stat"><h3>🌍</h3><p><strong>Mission:</strong> To make high-quality tech education affordable, practical, and accessible to all.</p></div>
+      <div class="stat"><h3>🚀</h3><p><strong>Vision:</strong> To become Africa’s leading hub for data-driven skills and digital transformation.</p></div>
+    </div>
   </section>
 
+  <!-- STATS -->
   <section class="section">
-    <h2><i class="fas fa-eye"></i> Our Vision</h2>
-    <p>
-      To be a <strong>global launchpad</strong> where anyone can learn cutting‑edge data & AI skills and connect them to real career opportunities.
-    </p>
+    <h2>Our Impact</h2>
+    <div class="stats">
+      <div class="stat"><h3>5k+</h3><p>Students Enrolled</p></div>
+      <div class="stat"><h3>120+</h3><p>Projects Completed</p></div>
+      <div class="stat"><h3>15+</h3><p>Expert Mentors</p></div>
+      <div class="stat"><h3>98%</h3><p>Satisfaction Rate</p></div>
+    </div>
   </section>
 
-  <section class="section">
-    <h2><i class="fas fa-book-open"></i> What You’ll Learn</h2>
+  <!-- OUR COURSES -->
+  <section class="section" id="courses">
+    <h2>What You’ll Learn</h2>
+    <div class="filter-buttons">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="ai">AI</button>
+      <button data-filter="data">Data</button>
+      <button data-filter="ml">ML</button>
+      <button data-filter="viz">Visualization</button>
+      <button data-filter="projects">Projects</button>
+    </div>
     <div class="grid">
-      <div class="feature"><i class="fas fa-brain"></i> Introduction to AI (NLP, CV, Agents)</div>
-      <div class="feature"><i class="fas fa-database"></i> Data Analysis with Python, Excel & SQL</div>
-      <div class="feature"><i class="fas fa-robot"></i> Machine Learning & Predictive Modeling</div>
-      <div class="feature"><i class="fas fa-chart-line"></i> Visualization with Power BI & Tableau</div>
-      <div class="feature"><i class="fas fa-gear"></i> Automation, datasets & end‑to‑end projects</div>
+      <div class="feature" data-category="ai"><img src="https://source.unsplash.com/600x400/?ai,robot" alt="AI"><p>Artificial Intelligence (AI)</p></div>
+      <div class="feature" data-category="data"><img src="https://source.unsplash.com/600x400/?data,python" alt="Data Analysis"><p>Data Analysis with Python & SQL</p></div>
+      <div class="feature" data-category="ml"><img src="https://source.unsplash.com/600x400/?machinelearning,neural" alt="Machine Learning"><p>Machine Learning</p></div>
+      <div class="feature" data-category="viz"><img src="https://source.unsplash.com/600x400/?data,visualization" alt="Visualization"><p>Visualization (Power BI, Tableau)</p></div>
+      <div class="feature" data-category="projects"><img src="https://source.unsplash.com/600x400/?automation,project" alt="Automation Projects"><p>Automation & Projects</p></div>
     </div>
   </section>
 
+  <!-- INSTRUCTOR -->
   <section class="section">
-    <h2><i class="fas fa-toolbox"></i> Tools You’ll Master</h2>
-    <ul>
-      <li><i class="fab fa-python"></i> Python, Jupyter, Google Colab</li>
-      <li><i class="fas fa-code"></i> VS Code, Pandas, NumPy</li>
-      <li><i class="fas fa-cogs"></i> Scikit‑Learn, Matplotlib, Seaborn</li>
-      <li><i class="fas fa-chart-pie"></i> Power BI, Tableau, Excel</li>
-      <li><i class="fas fa-server"></i> SQL (PostgreSQL / MySQL)</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2><i class="fas fa-certificate"></i> Certificates</h2>
-    <p>
-      Complete a path and earn an <strong>official ErikodxIT certificate</strong> — verifiable, downloadable, and perfect for LinkedIn or your portfolio.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2><i class="fas fa-user-tie"></i> Meet Your Instructor</h2>
+    <h2>Meet the Instructor</h2>
     <div class="instructor">
-      <div class="avatar">E</div>
-      <div>
-        <strong>Erik Odinaka</strong> — Certified AI & Data Analyst with 5+ years of teaching and industry experience.<br>
-        Passionate about turning complex ideas into <strong>simple, practical lessons</strong>.
+      <div class="avatar"><img src="https://source.unsplash.com/200x200/?teacher,mentor" alt="Instructor"></div>
+      <div class="instructor-info">
+        <strong>Erikodx</strong>
+        <p>
+          With 8+ years of experience in the tech industry, Erikodx is passionate about
+          helping learners build practical skills that lead to real-world opportunities.
+          He has trained professionals across multiple countries in data, coding, and career growth.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
   <section class="section">
-    <h2><i class="fas fa-circle-question"></i> FAQ</h2>
+    <h2>What Our Students Say</h2>
+    <div class="testimonials">
+      <div class="testimonial"><p>"ErikodxIT made me career-ready in data analysis. I now work as a junior data scientist!"</p><strong>- Blessing I.</strong></div>
+      <div class="testimonial"><p>"From zero coding knowledge to building real apps — the Python course was life-changing."</p><strong>- John D.</strong></div>
+      <div class="testimonial"><p>"The mentorship was top-notch. The hands-on approach kept me motivated throughout."</p><strong>- Sarah K.</strong></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <h2>Frequently Asked Questions</h2>
     <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">Will I get a certificate? <i class="fas fa-plus"></i></div>
-        <div class="faq-a"><p>Yes! After completing your track, you’ll receive a verified certificate you can share on LinkedIn.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do I need prior experience? <i class="fas fa-plus"></i></div>
-        <div class="faq-a"><p>No. Our courses start from the absolute basics — and then scale up.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How long do courses last? <i class="fas fa-plus"></i></div>
-        <div class="faq-a"><p>Most learners finish a full path in 4–12 weeks (self‑paced).</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What platforms are used? <i class="fas fa-plus"></i></div>
-        <div class="faq-a"><p>We use our web platform, Zoom/Meet for live calls, and GitHub/Drive for resources.</p></div>
-      </div>
+      <div class="faq-item"><div class="faq-q">Do I need prior experience? <i class="fas fa-chevron-down"></i></div><div class="faq-a">No. Our courses start from beginner level and gradually move to advanced projects.</div></div>
+      <div class="faq-item"><div class="faq-q">Are the courses self-paced? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes, you can learn at your own pace with lifetime access to all lessons.</div></div>
+      <div class="faq-item"><div class="faq-q">Do I get a certificate? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes, upon successful completion, you’ll earn a certificate you can share on LinkedIn.</div></div>
     </div>
   </section>
 
+  <!-- CTA -->
   <div class="cta-box">
-    <a class="cta-btn" href="{{ url_for('register') }}">🚀 Start Learning Now</a>
+    <h3>Join ErikodxIT Today 🚀</h3>
+    <p>Transform your career with practical, hands-on training and mentorship.</p>
+    <a href="#courses" class="cta-btn"><i class="fas fa-rocket"></i> Get Started</a>
   </div>
-
-  <section class="section">
-    <h2><i class="fas fa-envelope"></i> Need Help?</h2>
-    <p>Email us anytime at
-      <a href="mailto:support@erikodxit.com" style="color:var(--brand);text-decoration:none;">support@erikodxit.com</a>
-    </p>
-  </section>
-
 </main>
 
 <footer>
   &copy; 2025 ErikodxIT • Empowering You with Future Tech Skills.
   <div class="social">
-    <a href="https://facebook.com/yourhandle" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/erikodxit/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://x.com/yourhandle" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://linkedin.com/in/yourhandle" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-x-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
   </div>
 </footer>
 
 <script>
-  // Mobile nav toggle
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav  = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-    hamburger.querySelector('i').classList.toggle('fa-bars');
-    hamburger.querySelector('i').classList.toggle('fa-xmark');
+  // Mobile nav
+  document.getElementById('hamburger').addEventListener('click', ()=>{
+    document.getElementById('mobileNav').classList.toggle('open');
   });
 
   // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const item = btn.parentElement;
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      const item=q.parentElement;
       item.classList.toggle('active');
-      const icon = btn.querySelector('i');
-      icon.classList.toggle('fa-plus');
-      icon.classList.toggle('fa-minus');
+      const icon=q.querySelector('i');
+      icon.classList.toggle('fa-chevron-down');
+      icon.classList.toggle('fa-chevron-up');
+    });
+  });
+
+  // Scroll reveal sections
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  sections.forEach(section=>observer.observe(section));
+
+  // Course filter
+  const filterButtons = document.querySelectorAll('.filter-buttons button');
+  const features = document.querySelectorAll('.feature');
+  filterButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterButtons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      features.forEach(f=>{
+        if(filter==="all" || f.dataset.category===filter){
+          f.style.display="block";
+        }else{
+          f.style.display="none";
+        }
+      });
     });
   });
 </script>
 
-</body>
-</html>

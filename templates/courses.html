@@ -21,7 +21,11 @@
 
   *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
 
-  body{background:var(--bg);color:var(--ink);line-height:1.6;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+  }
 
   /* ===== NAV ===== */
   header{
@@ -33,242 +37,290 @@
     box-shadow:0 2px 10px rgba(0,0,0,.04);
     position:sticky;top:0;z-index:100;
   }
-  .logo{font-size:1.7rem;font-weight:700;color:var(--brand);}
-  nav a{
-    color:var(--ink);text-decoration:none;font-weight:500;margin-left:22px;
-    transition:.2s;
+  .logo{
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--brand);
   }
-  nav a:hover{color:var(--brand-dark);}
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+  }
+  nav ul li a{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:500;
+    position:relative;
+    padding:8px 4px;
+    transition:.3s;
+  }
+  nav ul li a::after{
+    content:"";
+    position:absolute;
+    bottom:-4px;left:0;
+    width:0;height:2px;
+    background:var(--brand-dark);
+    transition:.3s;
+  }
+  nav ul li a.active{
+    color:var(--brand-dark);
+  }
+  nav ul li a.active::after{width:100%;}
+
+  /* ===== HAMBURGER ===== */
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+  }
+  .hamburger span{
+    width:25px;
+    height:3px;
+    background:var(--ink);
+    border-radius:4px;
+    transition:.3s;
+  }
+
+  /* mobile menu */
+  @media(max-width:768px){
+    nav{
+      display:none;
+      position:absolute;
+      top:70px; right:20px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:15px 20px;
+    }
+    nav ul{
+      flex-direction:column;
+      gap:12px;
+    }
+    nav.show{display:block;}
+    .hamburger{display:flex;}
+  }
 
   /* ===== HERO ===== */
   .hero{
-    width:100%;
     background:linear-gradient(135deg,#eafff7, #fafffd);
     padding:80px 20px 60px;
     text-align:center;
     position:relative;
     overflow:hidden;
   }
-  .hero::before,
-  .hero::after{
+  .hero::before,.hero::after{
     content:"";
     position:absolute;
-    width:260px;
-    height:260px;
+    width:260px;height:260px;
     border-radius:50%;
     background:rgba(0,227,163,.15);
     filter:blur(60px);
-    z-index:0;
   }
   .hero::before{top:-40px;left:-40px;}
   .hero::after{right:-60px;bottom:-60px;}
-  .hero h1{
-    position:relative;z-index:1;
-    font-size:2.6rem;margin-bottom:10px;color:var(--ink);
-  }
-  .hero p{
-    position:relative;z-index:1;
-    color:var(--muted);max-width:680px;margin:0 auto 28px;
-  }
+  .hero h1{font-size:2.6rem;margin-bottom:10px;}
+  .hero p{color:var(--muted);max-width:680px;margin:0 auto;}
 
   /* ===== CONTAINER ===== */
-  .container{
-    width:92%;max-width:1200px;margin:0 auto;padding:50px 0 70px;
-  }
-
-  .grid{
-    display:grid;gap:28px;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  }
+  .container{width:92%;max-width:1200px;margin:0 auto;padding:50px 0 70px;}
+  .grid{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
 
   /* ===== COURSE CARD ===== */
   .card{
     background:var(--card);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
-    padding:26px 24px 22px;
-    position:relative;
     overflow:hidden;
-    transition:.25s;
-    transform-style:preserve-3d;
+    transition:.3s;
+    cursor:pointer;
   }
-  .card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 32px rgba(0,227,163,.18);
+  .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,227,163,.2);}
+  .card img{
+    width:100%;height:160px;object-fit:cover;
   }
+  .card-body{padding:22px;}
   .card .icon{
-    width:52px;height:52px;
+    width:50px;height:50px;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(0,227,163,.12);
+    background:rgba(0,227,163,.1);
     color:var(--brand);
-    border-radius:12px;
-    font-size:1.35rem;
-    margin-bottom:16px;
+    border-radius:12px;font-size:1.3rem;
+    margin-bottom:12px;
   }
-  .card h3{
-    font-size:1.15rem;margin-bottom:8px;color:var(--ink);
-  }
-  .card p{
-    font-size:.95rem;color:var(--muted);margin-bottom:18px;
-  }
+  .card h3{margin-bottom:6px;font-size:1.2rem;}
+  .card p{font-size:.93rem;color:var(--muted);margin-bottom:14px;}
 
-  .meta{
-    display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
-  }
-  .tag{
-    background:rgba(0,227,163,.14);
-    color:#008a65;
-    font-size:.75rem;
-    padding:4px 8px;border-radius:20px;
-  }
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .tag{background:rgba(0,227,163,.15);color:#008a65;font-size:.75rem;padding:4px 8px;border-radius:16px;}
 
-  .card .cta{
-    display:inline-flex;align-items:center;gap:8px;
-    background:var(--brand);
-    color:#000;
-    padding:9px 16px;border-radius:28px;
-    text-decoration:none;font-weight:600;font-size:.9rem;
-    transition:.22s;
-    box-shadow:0 6px 14px rgba(0,227,163,.28);
+  .cta{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--brand);color:#000;
+    padding:9px 14px;border-radius:24px;
+    text-decoration:none;font-weight:600;
+    font-size:.88rem;transition:.3s;
   }
-  .card .cta:hover{
-    background:var(--brand-dark);color:#fff;transform:translateY(-1px);
-  }
-
-  /* ===== CTA BOTTOM ===== */
-  .cta-wide{
-    margin-top:58px;text-align:center;
-  }
-  .cta-wide a{
-    background:var(--brand);
-    color:#000;text-decoration:none;font-weight:700;
-    padding:15px 34px;border-radius:32px;font-size:1.05rem;
-    box-shadow:0 10px 24px rgba(0,227,163,.3);
-    transition:.25s;
-  }
-  .cta-wide a:hover{background:var(--brand-dark);color:#fff;}
+  .cta:hover{background:var(--brand-dark);color:#fff;transform:translateY(-2px);}
 
   /* ===== FOOTER ===== */
   footer{
-    background:var(--dark);color:#ccc;text-align:center;padding:24px 16px;
+    background:var(--dark);color:#ccc;
+    text-align:center;padding:24px 16px;
   }
-  .social{
-    margin-top:12px;display:flex;justify-content:center;gap:12px;
-  }
-  .social a{
-    color:#fff;font-size:1.15rem;width:40px;height:40px;border-radius:50%;
-    background:rgba(255,255,255,.08);
-    display:flex;align-items:center;justify-content:center;
-    transition:.25s;
-  }
-  .social a:hover{background:var(--brand);color:#000;transform:translateY(-2px);}
-
-  @media (max-width:600px){
-    .hero h1{font-size:2rem;}
-  }
+  .social{margin-top:12px;display:flex;justify-content:center;gap:12px;}
+  .social a{color:#fff;font-size:1.1rem;}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">ErikodxIT</div>
-  <nav>
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('show_courses') }}">Courses</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <nav id="nav">
+    <ul id="nav-links">
+      <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
 <section class="hero">
   <h1>Explore Our Courses</h1>
-  <p>Career-focused, beginner-friendly tracks that take you from **zero → job‑ready** with real projects & certificates.</p>
+  <p>Career-focused, beginner-friendly tracks that take you from zero → job-ready with projects & certificates.</p>
 </section>
 
-<main class="container">
+ <main class="container">
   <div class="grid">
 
     <!-- AI -->
     <article class="card">
-      <div class="icon"><i class="fas fa-robot"></i></div>
-      <h3>Artificial Intelligence</h3>
-      <p>Understand the fundamentals of AI and build intelligent systems using Python.</p>
-      <div class="meta">
-        <span class="tag">Beginner → Intermediate</span>
-        <span class="tag">Python</span>
-        <span class="tag">NLP, CV</span>
+      <img src="https://images.unsplash.com/photo-1581090700227-4c4f50a3d0f3?auto=format&fit=crop&w=800&q=80" alt="AI Course">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-robot"></i></div>
+        <h3>Artificial Intelligence</h3>
+        <p>Understand the fundamentals of AI and build intelligent systems using Python.</p>
+        <div class="meta">
+          <span class="tag">Beginner → Intermediate</span>
+          <span class="tag">Python</span>
+          <span class="tag">NLP, CV</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start AI <i class="fas fa-arrow-right"></i></a>
       </div>
-      <a class="cta" href="{{ url_for('register') }}">Start AI <i class="fas fa-arrow-right"></i></a>
     </article>
 
     <!-- Data Analysis -->
     <article class="card">
-      <div class="icon"><i class="fas fa-chart-pie"></i></div>
-      <h3>Data Analysis</h3>
-      <p>Master Excel, Python & Power BI to clean, analyze and tell stories with data.</p>
-      <div class="meta">
-        <span class="tag">Beginner Friendly</span>
-        <span class="tag">Excel / Power BI</span>
-        <span class="tag">EDA</span>
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Data Analysis">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Data Analysis</h3>
+        <p>Master Excel, Python & SQL to clean, analyze and tell stories with data.</p>
+        <div class="meta">
+          <span class="tag">Beginner Friendly</span>
+          <span class="tag">Excel / Power BI</span>
+          <span class="tag">EDA</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start Data Analysis <i class="fas fa-arrow-right"></i></a>
       </div>
-      <a class="cta" href="{{ url_for('register') }}">Start Data Analysis <i class="fas fa-arrow-right"></i></a>
     </article>
 
-    <!-- ML -->
+    <!-- Machine Learning -->
     <article class="card">
-      <div class="icon"><i class="fas fa-brain"></i></div>
-      <h3>Machine Learning</h3>
-      <p>Supervised & unsupervised learning, model evaluation and deployment basics.</p>
-      <div class="meta">
-        <span class="tag">Intermediate</span>
-        <span class="tag">Scikit‑Learn</span>
-        <span class="tag">Regression / Clustering</span>
+      <img src="https://images.unsplash.com/photo-1581092919535-1c0d9a06f0f1?auto=format&fit=crop&w=800&q=80" alt="Machine Learning">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-brain"></i></div>
+        <h3>Machine Learning</h3>
+        <p>Supervised & unsupervised learning, model evaluation and deployment basics.</p>
+        <div class="meta">
+          <span class="tag">Intermediate</span>
+          <span class="tag">Scikit-Learn</span>
+          <span class="tag">Regression / Clustering</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start ML <i class="fas fa-arrow-right"></i></a>
       </div>
-      <a class="cta" href="{{ url_for('register') }}">Start ML <i class="fas fa-arrow-right"></i></a>
     </article>
 
     <!-- SQL -->
     <article class="card">
-      <div class="icon"><i class="fas fa-database"></i></div>
-      <h3>SQL for Data Science</h3>
-      <p>Query, join and aggregate data to power dashboards, analytics & pipelines.</p>
-      <div class="meta">
-        <span class="tag">All Levels</span>
-        <span class="tag">PostgreSQL / MySQL</span>
-        <span class="tag">Joins / Window Funcs</span>
+      <img src="https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=800&q=80" alt="SQL Course">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-database"></i></div>
+        <h3>SQL for Data Science</h3>
+        <p>Query, join and aggregate data to power dashboards, analytics & pipelines.</p>
+        <div class="meta">
+          <span class="tag">All Levels</span>
+          <span class="tag">PostgreSQL / MySQL</span>
+          <span class="tag">Joins / Window Funcs</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start SQL <i class="fas fa-arrow-right"></i></a>
       </div>
-      <a class="cta" href="{{ url_for('register') }}">Start SQL <i class="fas fa-arrow-right"></i></a>
     </article>
 
-    <!-- Capstone -->
+    <!-- Visualization -->
     <article class="card">
-      <div class="icon"><i class="fas fa-project-diagram"></i></div>
-      <h3>Capstone Projects</h3>
-      <p>Ship real projects you can showcase to recruiters & hiring managers.</p>
-      <div class="meta">
-        <span class="tag">Portfolio Ready</span>
-        <span class="tag">End‑to‑End</span>
-        <span class="tag">Mentorship</span>
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Visualization Course">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Data Visualization</h3>
+        <p>Build dashboards & reports with Power BI and Tableau to tell impactful stories.</p>
+        <div class="meta">
+          <span class="tag">Beginner → Advanced</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start Visualization <i class="fas fa-arrow-right"></i></a>
       </div>
-      <a class="cta" href="{{ url_for('register') }}">Start Building <i class="fas fa-arrow-right"></i></a>
     </article>
 
-  </div>
+    <!-- Automation Projects -->
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Automation Projects">
+      <div class="card-body">
+        <div class="icon"><i class="fas fa-cogs"></i></div>
+        <h3>Automation & Projects</h3>
+        <p>Hands-on projects automating tasks & workflows with Python.</p>
+        <div class="meta">
+          <span class="tag">Intermediate</span>
+          <span class="tag">Python</span>
+          <span class="tag">APIs / Scripts</span>
+        </div>
+        <a class="cta" href="{{ url_for('register') }}">Start Automation <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
 
-  <div class="cta-wide">
-    <a href="{{ url_for('register') }}">🚀 Get Started Now</a>
   </div>
 </main>
-
 <footer>
   &copy; 2025 ErikodxIT • Empowering You with Future Tech Skills.
   <div class="social">
-    <a href="https://facebook.com/yourhandle" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/erikodxit/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://x.com/yourhandle" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://linkedin.com/in/yourhandle" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-x-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
   </div>
 </footer>
+
+<script>
+// toggle hamburger menu
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
+hamburger.addEventListener('click', ()=> nav.classList.toggle('show'));
+
+// active link underline
+document.querySelectorAll('#nav-links a').forEach(link=>{
+  link.addEventListener('click',function(){
+    document.querySelectorAll('#nav-links a').forEach(a=>a.classList.remove('active'));
+    this.classList.add('active');
+    // close menu on mobile after click
+    nav.classList.remove('show');
+  });
+});
+</script>
 
 </body>
 </html>

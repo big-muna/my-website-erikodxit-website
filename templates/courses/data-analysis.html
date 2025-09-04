@@ -14,19 +14,19 @@
       overflow: hidden;
     }
 
+    /* Sidebar */
     .sidebar {
       width: 280px;
       background: #12123a;
       overflow-y: auto;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 255, 255, 0.1);
+      box-shadow: 2px 0 8px rgba(0, 255, 255, 0.15);
     }
-
     .sidebar h2 {
       color: #00c2ff;
       margin-bottom: 15px;
+      font-size: 1.4em;
     }
-
     .video-item {
       background: #1e1e40;
       border: 1px solid transparent;
@@ -35,35 +35,33 @@
       margin-bottom: 10px;
       cursor: pointer;
       transition: 0.3s;
+      font-size: 0.95em;
     }
-
     .video-item.locked {
       opacity: 0.5;
-      pointer-events: none;
+      cursor: not-allowed;
     }
-
-    .video-item:hover, .video-item.active {
+    .video-item:hover:not(.locked),
+    .video-item.active {
       border-color: #00c2ff;
       background: #2a2a5a;
     }
 
+    /* Main Content */
     .main-content {
       flex: 1;
       padding: 40px 30px;
       overflow-y: auto;
     }
-
     h1 {
       color: #00c2ff;
       margin-bottom: 10px;
     }
-
     .video-title {
       font-size: 1.2em;
       font-weight: bold;
       margin: 20px 0 10px;
     }
-
     video {
       width: 100%;
       max-height: 500px;
@@ -71,10 +69,10 @@
       border-radius: 12px;
     }
 
+    /* Quiz + Notes */
     .next-quiz {
       margin-top: 20px;
     }
-
     .next-quiz a {
       display: inline-block;
       padding: 10px 20px;
@@ -83,23 +81,25 @@
       font-weight: bold;
       border-radius: 25px;
       text-decoration: none;
-      margin-right: 10px;
-      margin-bottom: 10px;
+      margin: 5px 10px 5px 0;
+      transition: 0.2s;
+    }
+    .next-quiz a:hover {
+      background: #00e6ff;
     }
 
+    /* Instructor Chat */
     .chat-box {
       margin-top: 40px;
       background: #12123a;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.1);
+      box-shadow: 0 0 10px rgba(0,255,255,0.15);
     }
-
     .chat-box h3 {
       margin-top: 0;
       color: #00c2ff;
     }
-
     .chat-box textarea {
       width: 100%;
       height: 80px;
@@ -110,7 +110,6 @@
       padding: 10px;
       resize: vertical;
     }
-
     .chat-box button {
       margin-top: 10px;
       background: #00c2ff;
@@ -121,7 +120,11 @@
       border-radius: 25px;
       cursor: pointer;
     }
+    .chat-box button:hover {
+      background: #00e6ff;
+    }
 
+    /* AI Button + Popup */
     .ai-button {
       position: fixed;
       bottom: 25px;
@@ -131,11 +134,12 @@
       padding: 15px 20px;
       border-radius: 50%;
       font-size: 1.4em;
-      box-shadow: 0 0 12px #00c2ff;
+      box-shadow: 0 0 15px #00c2ff;
       cursor: pointer;
       z-index: 999;
+      transition: transform 0.2s;
     }
-
+    .ai-button:hover { transform: scale(1.1); }
     .ai-popup {
       display: none;
       position: fixed;
@@ -149,7 +153,7 @@
       box-shadow: 0 0 20px #00c2ff;
       z-index: 999;
     }
-
+    .ai-popup strong { color: #00c2ff; }
     .ai-popup textarea {
       width: 100%;
       padding: 10px;
@@ -160,7 +164,6 @@
       color: #fff;
       margin-top: 10px;
     }
-
     .ai-popup button {
       margin-top: 10px;
       width: 100%;
@@ -172,15 +175,15 @@
       color: #000;
       font-weight: bold;
     }
+    .ai-popup button:hover { background: #00e6ff; }
 
+    /* Mobile */
     @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
+      body { flex-direction: column; }
       .sidebar {
         width: 100%;
         height: 180px;
-        overflow-x: scroll;
+        overflow-x: auto;
         white-space: nowrap;
       }
       .video-item {
@@ -193,10 +196,12 @@
 </head>
 <body>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="video-list">
     <h2>📊 Data Lessons</h2>
   </div>
 
+  <!-- Main -->
   <div class="main-content">
     <h1>📊 Data Analysis</h1>
     <p>Explore methods to clean, organize, and analyze real-world data.</p>
@@ -209,16 +214,20 @@
 
     <div class="next-quiz" id="quiz-link"></div>
 
+    <!-- Instructor Chat -->
     <div class="chat-box">
-  <h3>Ask Your Instructor</h3>
-  <form method="POST" action="{{ url_for('ask_question', course_slug=course_slug) }}">
-    <textarea name="question" placeholder="Type your question or feedback here..." required></textarea>
-    <button type="submit">Send Question</button>
-  </form>
-</div>
+      <h3>Ask Your Instructor</h3>
+      <form method="POST" action="{{ url_for('ask_question', course_slug=course_slug) }}">
+        <textarea name="question" placeholder="Type your question or feedback..." required></textarea>
+        <button type="submit">Send Question</button>
+      </form>
+    </div>
+  </div>
 
+  <!-- AI Button -->
   <div class="ai-button" onclick="toggleAIPopup()">🤖</div>
 
+  <!-- AI Popup -->
   <div class="ai-popup" id="aiPopup">
     <strong>Ask Erikodx AI</strong>
     <textarea placeholder="Type your question..."></textarea>
@@ -226,11 +235,13 @@
   </div>
 
   <script>
+    // Simulated user progress (from backend)
     const userProgress = parseInt("{{ progress }}") || 0;
 
+    // Generate lessons (videos must be named 1.mp4, 2.mp4 ... 20.mp4 in static/video/)
     const videos = Array.from({ length: 20 }, (_, i) => ({
       title: `Lesson ${i + 1}: Data Analysis Topic ${i + 1}`,
-      file: `/static/video/data-analysis/${i + 1}.mp4`
+      file: `/static/video/${i + 1}.mp4`
     }));
 
     const videoList = document.getElementById("video-list");
@@ -248,15 +259,16 @@
       document.querySelectorAll('.video-item')[index].classList.add("active");
 
       quizLink.innerHTML = `
-        <a href="/quiz/data-analysis/${index + 1}">🎯 Take Quiz for Lesson ${index + 1}</a>
-        <a href="/materials/data-analysis/${index + 1}">📄 Download Notes</a>
+        <a href="/quiz/data-analysis/${index + 1}">🎯 Quiz ${index + 1}</a>
+        <a href="/materials/data-analysis/${index + 1}">📄 Notes</a>
       `;
 
       if (index === videos.length - 1 && userProgress >= index) {
-        quizLink.innerHTML += `<br><a href="/certificate/data-analysis" style="background:#00ffcc;">🎓 Download Certificate</a>`;
+        quizLink.innerHTML += `<a href="/certificate/data-analysis" style="background:#00ffcc;">🎓 Certificate</a>`;
       }
     }
 
+    // Build sidebar
     videos.forEach((video, index) => {
       const div = document.createElement("div");
       div.className = "video-item" + (index > userProgress ? " locked" : "");
@@ -265,13 +277,14 @@
       videoList.appendChild(div);
     });
 
+    // Load starting video
     loadVideo(userProgress);
 
+    // AI popup toggle
     function toggleAIPopup() {
       const popup = document.getElementById("aiPopup");
-      popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
+      popup.style.display = (popup.style.display === "block") ? "none" : "block";
     }
   </script>
-
 </body>
 </html>

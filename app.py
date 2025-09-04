@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template
 from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 import urllib.parse
@@ -349,7 +348,7 @@ def open_course(course_slug):
         flash("⚠️ User not found. Please log in again.", "warning")
         return redirect(url_for("login"))
 
-    # ✅ Check if course is unlocked for this user
+    # ✅ Check if course is unlocked
     active_access = CourseAccessCode.query.filter(
         CourseAccessCode.user_id == user.id,
         CourseAccessCode.course_slug == course_slug,
@@ -360,22 +359,47 @@ def open_course(course_slug):
         flash("❌ You don't have access to this course.", "danger")
         return redirect(url_for("dashboard"))
 
+    # ✅ Fetch course videos
+    course_videos = CourseVideo.query.filter_by(course_slug=course_slug).all()
+    videos = []
+    for v in course_videos:
+        if v.is_youtube:
+            file_url = v.video_url  # e.g. YouTube link
+        else:
+            file_url = url_for('static', filename=v.video_url)  # e.g. uploads/videos/lesson1.mp4
+
+        videos.append({
+            "id": v.id,
+            "title": v.title,
+            "file": file_url
+        })
+
+    # ✅ Dummy progress for now (replace with real DB tracking later)
+    progress = 0  
+
     # ✅ Map slug to template
     template_map = {
-    "ai": "courses/ai.html",
-    "data-analysis": "courses/data-analysis.html",
-    "ml": "courses/ml.html",
-    "viz": "courses/data-viz.html",
-    "ai-projects": "courses/ai-projects.html",
-    "python": "courses/python.html",
-    "sql": "courses/sql.html"
-}
+        "ai": "courses/ai.html",
+        "data-analysis": "courses/data-analysis.html",
+        "ml": "courses/ml.html",
+        "viz": "courses/data-viz.html",
+        "ai-projects": "courses/ai-projects.html",
+        "python": "courses/python.html",
+        "sql": "courses/sql.html"
+    }
 
     template = template_map.get(course_slug)
     if not template:
         return "❌ Course template not found.", 404
 
-    return render_template(template, user=user)
+    # ✅ Pass videos + progress into template
+    return render_template(template, user=user, videos=videos, progress=progress, course_slug=course_slug)
+
+
+@app.route("/video")
+def video_test():
+    return render_template("video_test.html")
+
 
 @app.route('/ai-training', methods=['GET', 'POST'])
 def ai_training():
